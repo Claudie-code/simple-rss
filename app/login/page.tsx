@@ -6,6 +6,7 @@ import { SubmitButton } from "./submit-button";
 import { Separator } from "@/components/ui/separator";
 import { Mail } from "lucide-react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function Login({
   searchParams,
@@ -25,10 +26,8 @@ export default function Login({
       },
     });
 
-    console.log("error", error);
-
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return toast.error("Could not authenticate user");
     }
 
     return redirect(data.url);
@@ -47,10 +46,8 @@ export default function Login({
       },
     });
 
-    console.log("error", error);
-
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return toast.error("Could not authenticate user");
     }
 
     return redirect(data.url);
@@ -70,9 +67,8 @@ export default function Login({
       },
     });
 
-    console.log("t", error);
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return toast.error("Could not authenticate user");
     }
 
     return redirect("/login?message=Check email to continue sign in process");

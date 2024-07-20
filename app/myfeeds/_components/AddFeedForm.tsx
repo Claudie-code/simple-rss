@@ -39,11 +39,9 @@ const AddFeedForm = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log("submit");
-
       const response = await axios.post("/api/feeds", values);
-      // router.push(`/teacher/courses/${response.data.id}`);
       toast.success("Feed created");
+      form.reset();
     } catch {
       toast.error("Something went wrong");
     }
