@@ -4,10 +4,14 @@ import { Sidebar } from "@/components/layout/Sidebar";
 
 type Props = {};
 
-export const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
+export default function SettingsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <div>{children}</div>
     </>
   );
-};
+}
