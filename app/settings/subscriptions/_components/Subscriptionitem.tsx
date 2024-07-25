@@ -31,12 +31,12 @@ export const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
   };
 
   return (
-    <div className="space-y-2 flex flex-row items-center justify-between rounded-lg border p-4">
-      <div className="space-y-0.5">
-        <h3 className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-base">
+    <div className="flex items-center justify-between rounded-lg border p-4 space-x-4">
+      <div className="flex-1 min-w-0">
+        <h3 className="font-medium text-base truncate peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           {subscription.feeds?.title}
         </h3>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground truncate">
           {subscription.feeds?.url}
         </p>
       </div>
