@@ -2,28 +2,33 @@
 
 import { SubscriptionWithFeed } from "@/types/collection";
 import { Switch } from "@/components/ui/switch";
-import { updateSubscription } from "../action";
+import { updateSubscription } from "../actions";
 import toast from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+import { useTransition } from "react";
+import { useState } from "react";
 
 type SubscriptionItemProps = {
   subscription: SubscriptionWithFeed;
 };
 
 export const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
-  const mutation = useMutation({
-    mutationFn: async () =>
-      await updateSubscription(subscription.id, !subscription.is_active),
-    onSuccess: () => {
-      toast.success(
-        `${subscription.is_active ? "Unsubscribed" : "Subscribed"} successfully`
-      );
-    },
-    onError: (error) => {
-      console.log("Error updating subscription", error);
-      toast.error("Error updating subscription");
-    },
-  });
+  const [isPending, startTransition] = useTransition();
+  const [isActive, setIsActive] = useState(subscription.is_active || false);
+
+  const onToggle = async () => {
+    startTransition(async () => {
+      try {
+        await updateSubscription(subscription.id, !isActive);
+        setIsActive((prev) => !prev);
+        toast.success(
+          `${isActive ? "Unsubscribed" : "Subscribed"} successfully`
+        );
+      } catch (error) {
+        console.log("Error updating subscription", error);
+        toast.error("Error updating subscription");
+      }
+    });
+  };
 
   return (
     <div className="space-y-2 flex flex-row items-center justify-between rounded-lg border p-4">
@@ -36,9 +41,9 @@ export const SubscriptionItem = ({ subscription }: SubscriptionItemProps) => {
         </p>
       </div>
       <Switch
-        checked={subscription.is_active || false}
-        onCheckedChange={() => mutation.mutate()}
-        disabled={mutation.isPending}
+        checked={isActive}
+        onCheckedChange={onToggle}
+        disabled={isPending}
       />
     </div>
   );

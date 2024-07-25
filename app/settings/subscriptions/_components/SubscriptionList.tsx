@@ -1,6 +1,6 @@
 import { SubscriptionWithFeed } from "@/types/collection";
 import { SubscriptionItem } from "./Subscriptionitem";
-import { updateSubscription } from "../action";
+import { updateSubscription } from "../actions";
 import toast from "react-hot-toast";
 
 type SubscriptionListProps = {
