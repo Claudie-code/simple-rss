@@ -3,11 +3,7 @@ import { redirect } from "next/navigation";
 import { getFeeds } from "@/actions/get-feeds";
 import MyFeeds from "./_components/MyFeeds";
 
-export default async function MyFeedsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function MyFeedsLayout() {
   const supabase = createClient();
   const {
     data: { user },
