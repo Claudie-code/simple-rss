@@ -10,7 +10,7 @@ import { Suspense } from "react";
 
 type Props = {};
 
-const OPMLPage = async ({}: Props) => {
+async function OPMLPage({}: Props) {
   const supabase = createClient();
   const {
     data: { user },
@@ -41,6 +41,6 @@ const OPMLPage = async ({}: Props) => {
       </div>
     </div>
   );
-};
+}
 
 export default OPMLPage;

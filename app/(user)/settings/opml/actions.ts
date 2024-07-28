@@ -1,8 +1,6 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
 import { importFromOPML } from "@/utils/opml/opml";
-import { revalidatePath } from "next/cache";
 import { createFeed } from "@/actions/create-feed";
 
 export async function importOPMLFeeds(opmlContent: string, userId: string) {
@@ -20,5 +18,5 @@ export async function importOPMLFeeds(opmlContent: string, userId: string) {
       throw new Error(result.error);
     }
   }
-  console.log("Feeds created"); // Add this log for debugging
+  console.log("Feeds created");
 }

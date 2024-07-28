@@ -1,182 +1,115 @@
 import { createClient } from "@/utils/supabase/server";
-import Parser from "rss-parser";
-import rssFinder from "rss-finder";
+import { getFeed } from "@/utils/feed";
+import { upsertArticles } from "./upsert-articles";
 
-type CustomItem = {
-  creator?: string;
-  guid?: string;
-  categories?: string[];
-  thumb?: any;
-  image?: any;
-  fullContent?: string;
-  mediaContent?: any[];
-};
-
-type ArticleInsert = {
-  feed_id: number;
-  title: string | null;
-  link: string | null;
-  pub_date: string | null;
-  author: string | null;
-  content: string | null;
-  content_snippet: string | null;
-  id_article: string | null;
-  iso_date: string | null;
-  categories: string[] | null;
-};
-
-const parser = new Parser<CustomItem>({
-  customFields: {
-    item: [
-      "creator",
-      "guid",
-      "categories",
-      "thumb",
-      "image",
-      ["content:encoded", "fullContent"],
-      ["media:content", "mediaContent", { keepArray: true }],
-    ],
-  },
-});
-
-async function fetchAndParseFeed(url: string) {
-  try {
-    return await parser.parseURL(url);
-  } catch (error) {
-    console.error(`Error parsing feed from ${url}`, error);
-    return null;
-  }
-}
-
-async function findRssFeed(url: string) {
-  try {
-    const result = await rssFinder(url);
-    if (result.feedUrls && result.feedUrls.length > 0) {
-      return result.feedUrls[0].url; // Returning the first found feed URL
-    }
-    return null;
-  } catch (error) {
-    console.error(`Error finding RSS feed from ${url}`, error);
-    return null;
-  }
-}
-
-export async function createFeed({
-  url,
-  userId,
-  link,
-}: {
+interface Feed {
+  link: string;
+  title: string;
+  id: number;
   url: string;
-  userId: string;
-  link?: string;
-}) {
-  try {
-    const supabase = createClient();
+  correct_url: string | null;
+}
 
-    // Try fetching the feed directly from the URL
-    let feed = await fetchAndParseFeed(url);
+async function upsertFeed(
+  supabase: any,
+  feed: any,
+  url: string,
+  correctUrl: string | null
+): Promise<Feed> {
+  const { data: existingFeed, error: feedSelectError } = await supabase
+    .from("feeds")
+    .select("*")
+    .eq("url", url)
+    .single();
 
-    if (!feed) {
-      // Try to find RSS feed using rss-finder for the URL
-      const rssFeedUrl = await findRssFeed(url);
-      if (rssFeedUrl) {
-        feed = await fetchAndParseFeed(rssFeedUrl);
-      }
+  if (feedSelectError) {
+    console.log("No existing feed", feedSelectError);
+  }
 
-      // If still no feed found, try the link if provided
-      if (!feed && link) {
-        feed = await fetchAndParseFeed(link);
-
-        if (!feed) {
-          const rssFeedUrlFromLink = await findRssFeed(link);
-          if (rssFeedUrlFromLink) {
-            feed = await fetchAndParseFeed(rssFeedUrlFromLink);
-          }
-        }
-      }
-    }
-
-    if (!feed) {
-      return {
-        error: `Feed URL ${url} (or ${link}) is invalid or unreachable`,
-      };
-    }
-
-    if (!feed.link) {
-      console.log("Feed not found", feed);
-      return { error: "Feed not found" };
-    }
-
-    const { data: existingFeed, error: feedSelectError } = await supabase
+  let feedData: Feed;
+  if (!existingFeed) {
+    const { data: newFeedData, error: feedInsertError } = await supabase
       .from("feeds")
-      .select()
-      .eq("url", url)
+      .insert({
+        link: feed.link,
+        title: feed.title,
+        url,
+        correct_url: correctUrl || null, // Insert correct_url if available
+      })
+      .select("*")
       .single();
 
-    if (feedSelectError) {
-      console.log("No existing feed", feedSelectError);
+    if (feedInsertError) {
+      console.log("Error adding new feed", feedInsertError);
+      throw new Error("Error adding new feed");
     }
 
-    let feedData;
-    if (!existingFeed) {
-      const { data: newFeedData, error: feedInsertError } = await supabase
+    feedData = newFeedData;
+  } else {
+    // Update correct_url if it's found
+    if (correctUrl && existingFeed.correct_url !== correctUrl) {
+      const { data: updatedFeedData, error: feedUpdateError } = await supabase
         .from("feeds")
-        .insert({
-          link: feed.link,
-          title: feed.title,
-          url,
-        })
-        .select()
+        .update({ correct_url: correctUrl })
+        .eq("id", existingFeed.id)
+        .select("*")
         .single();
 
-      if (feedInsertError) {
-        console.log("Error adding new feed", feedInsertError);
-        return { error: "Error adding new feed" };
+      if (feedUpdateError) {
+        console.log("Error updating feed", feedUpdateError);
+        throw new Error("Error updating feed");
       }
 
-      feedData = newFeedData;
+      feedData = updatedFeedData;
     } else {
       feedData = existingFeed;
     }
+  }
 
-    const { error: subscriptionUpsertError } = await supabase
-      .from("subscriptions")
-      .upsert(
-        {
-          feed_id: feedData.id,
-          user_id: userId,
-          is_active: true,
-        },
-        { onConflict: "feed_id,user_id" }
-      );
+  return feedData;
+}
 
-    if (subscriptionUpsertError) {
-      console.log("Error upserting subscription", subscriptionUpsertError);
-      return { error: "Error upserting subscription" };
+async function upsertSubscription(
+  supabase: any,
+  feedId: number,
+  userId: string
+) {
+  const { error: subscriptionUpsertError } = await supabase
+    .from("subscriptions")
+    .upsert(
+      {
+        feed_id: feedId,
+        user_id: userId,
+        is_active: true,
+      },
+      { onConflict: "feed_id,user_id" }
+    );
+
+  if (subscriptionUpsertError) {
+    console.log("Error upserting subscription", subscriptionUpsertError);
+    throw new Error("Error upserting subscription");
+  }
+}
+
+interface CreateFeedParams {
+  url: string;
+  userId: string;
+  link?: string;
+}
+
+export async function createFeed({ url, userId, link }: CreateFeedParams) {
+  try {
+    const supabase = createClient();
+
+    const { feed, error, correctUrl } = await getFeed(url, link);
+    if (error || !feed) {
+      return { error };
     }
 
-    const items: ArticleInsert[] = feed.items.map((item) => ({
-      feed_id: feedData.id,
-      title: item.title ?? null,
-      link: item.link ?? null,
-      pub_date: item.pubDate ?? null,
-      author: item.creator ?? item.author ?? null,
-      content: item.content ?? null,
-      content_snippet: item.contentSnippet ?? null,
-      id_article: item.guid ?? item.id ?? null,
-      iso_date: item.isoDate ?? null,
-      categories: item.categories ?? null,
-    }));
+    const feedData = await upsertFeed(supabase, feed, url, correctUrl!);
+    await upsertSubscription(supabase, feedData.id, userId);
 
-    const { data: articles, error: upsertItemsError } = await supabase
-      .from("articles")
-      .upsert(items, { onConflict: "id_article" })
-      .select();
-
-    if (upsertItemsError) {
-      console.log("Error upserting articles", upsertItemsError);
-      return { error: "Error upserting articles" };
-    }
+    const articles = await upsertArticles(feedData, feed);
 
     return {
       feed: feedData,
