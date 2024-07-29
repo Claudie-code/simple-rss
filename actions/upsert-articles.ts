@@ -1,6 +1,7 @@
+import { Feeds } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
 
-export async function upsertArticles(feedData: any, feed: any) {
+export async function upsertArticles(feedData: Feeds, feed: any) {
   try {
     const supabase = createClient();
 

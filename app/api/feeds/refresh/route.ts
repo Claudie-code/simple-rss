@@ -28,13 +28,14 @@ export async function GET(req: Request) {
       const { id, url, correct_url } = oldFeed;
       const { feed, error } = await getFeed(correct_url || url);
       if (error || !feed) {
-        console.log(`[FEEDS_REFRESH] Error fetching feed for ${url}: ${error}`);
-        return;
+        return console.log(
+          `[FEEDS_REFRESH] Error fetching feed for ${url}: ${error}`
+        );
       }
 
-      const upsertError = await upsertArticles(id, feed);
+      const upsertError = await upsertArticles(oldFeed, feed);
       if (upsertError) {
-        console.log(
+        return console.log(
           `[FEEDS_REFRESH] Error upserting articles for feed ${id}: ${upsertError}`
         );
       }
