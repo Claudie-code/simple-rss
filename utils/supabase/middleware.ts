@@ -36,13 +36,18 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  // Chemins pour correspondances exactes
+  const exactPaths = ["/", "/api/feeds/refresh"];
+  const isExactPath = exactPaths.includes(request.nextUrl.pathname);
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/auth")
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
+  // Chemins pour correspondances de début
+  const startWithPaths = ["/login", "/auth"];
+  const isStartWithPath = startWithPaths.some((path) =>
+    request.nextUrl.pathname.startsWith(path)
+  );
+
+  if (!user && !isExactPath && !isStartWithPath) {
+    // No user and not on an excluded path, redirect to login
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
