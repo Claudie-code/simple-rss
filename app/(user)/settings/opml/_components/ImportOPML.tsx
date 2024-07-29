@@ -38,9 +38,15 @@ export const ImportOPML = ({ userId }: { userId: string }) => {
       const opmlContent = e.target?.result as string;
       startTransition(async () => {
         try {
-          await importOPMLFeeds(opmlContent, userId);
-          toast.success("Feeds imported successfully");
-          router.push(`/settings/subscriptions`);
+          const errors = await importOPMLFeeds(opmlContent, userId);
+          if (errors.length > 0) {
+            errors.forEach((error) => {
+              toast.error(`Error importing feed ${error.feed}: ${error.error}`);
+            });
+          } else {
+            toast.success("Feeds imported successfully");
+            router.push(`/settings/subscriptions`);
+          }
         } catch (error) {
           console.error("Error importing feeds", error);
           toast.error("Error importing feeds");

@@ -103,7 +103,7 @@ export async function createFeed({ url, userId, link }: CreateFeedParams) {
 
     const { feed, error, correctUrl } = await getFeed(url, link);
     if (error || !feed) {
-      return { error };
+      return { error: "Feed not found" };
     }
 
     const feedData = await upsertFeed(supabase, feed, url, correctUrl!);
