@@ -10,12 +10,17 @@ export async function GET(req: Request) {
     const accessKey = req.headers.get("x-api-key");
     const supabase = createClient();
 
+    if (!accessKey || accessKey !== ACCESS_KEY_CRON) {
+      console.log("[FEEDS_REFRESH] Unauthorized access attempt");
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
     const { data: user, error } = await supabase.auth.signInWithPassword({
       email: process.env.ADMIN_EMAIL!,
       password: process.env.ADMIN_PASSWORD!,
     });
 
-    if (!user || !accessKey || accessKey !== ACCESS_KEY_CRON) {
+    if (!user) {
       console.log("[FEEDS_REFRESH] Unauthorized access attempt");
       return new NextResponse("Unauthorized", { status: 401 });
     }
