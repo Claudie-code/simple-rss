@@ -1,12 +1,12 @@
 import { Feeds } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
 
-export async function upsertArticles(feedData: Feeds, feed: any) {
+export async function upsertArticles(feedId: number, feed: any) {
   try {
     const supabase = createClient();
 
     const items = feed.items!.map((item: any) => ({
-      feed_id: feedData.id,
+      feed_id: feedId,
       title: item.title ?? "",
       link: item.link ?? "",
       pub_date: item.pubDate ?? "",

@@ -33,7 +33,7 @@ export async function GET(req: Request) {
         );
       }
 
-      const upsertError = await upsertArticles(oldFeed, feed);
+      const upsertError = await upsertArticles(oldFeed.id, feed);
       if (upsertError) {
         return console.log(
           `[FEEDS_REFRESH] Error upserting articles for feed ${id}: ${upsertError}`

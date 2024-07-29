@@ -109,7 +109,7 @@ export async function createFeed({ url, userId, link }: CreateFeedParams) {
     const feedData = await upsertFeed(supabase, feed, url, correctUrl!);
     await upsertSubscription(supabase, feedData.id, userId);
 
-    const articles = await upsertArticles(feedData, feed);
+    const articles = await upsertArticles(feedData.id, feed);
 
     return {
       feed: feedData,
