@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 const ACCESS_KEY_CRON = process.env.ACCESS_KEY_CRON;
 
-export async function PATCH(req: Request) {
+export async function GET(req: Request) {
   try {
     const accessKey = req.headers.get("x-api-key");
     const supabase = createClient();
