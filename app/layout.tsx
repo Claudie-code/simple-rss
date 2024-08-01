@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className="bg-background text-foreground">
         <Providers>
           <Header />
-          <main className="min-h-screen flex flex-col p-4">{children}</main>
+          <main className="min-h-screen flex flex-col">{children}</main>
           <Footer />
         </Providers>
       </body>

@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { getFeeds } from "@/actions/get-feeds";
-import MyFeeds from "./_components/MyFeeds";
+import Myfeeds from "./_components/MyFeeds";
 
 export default async function MyFeedsLayout() {
   const supabase = createClient();
@@ -17,9 +17,5 @@ export default async function MyFeedsLayout() {
     userId: user.id,
   });
 
-  return (
-    <div className="max-w-4xl">
-      <MyFeeds feeds={feeds} />
-    </div>
-  );
+  return <Myfeeds feeds={feeds} />;
 }
