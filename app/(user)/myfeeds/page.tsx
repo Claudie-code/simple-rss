@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { getFeeds } from "@/actions/get-feeds";
 import Myfeeds from "./_components/MyFeeds";
+import AuthButton from "@/components/auth/AuthButton";
 
 export default async function MyFeedsLayout() {
   const supabase = createClient();
@@ -17,5 +18,12 @@ export default async function MyFeedsLayout() {
     userId: user.id,
   });
 
-  return <Myfeeds feeds={feeds} />;
+  return (
+    <>
+      <nav className="w-full flex justify-end border-b border-b-foreground/10 h-16 items-center p-3 px-16 text-sm">
+        <AuthButton />
+      </nav>
+      <Myfeeds feeds={feeds} />
+    </>
+  );
 }

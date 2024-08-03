@@ -1,8 +1,8 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { LoggedInButton } from "./LoggedInButton";
 import { User } from "lucide-react";
+import UserButton from "./UserButton";
 
 export default async function AuthButton() {
   const supabase = createClient();
@@ -14,7 +14,7 @@ export default async function AuthButton() {
     <LoggedInButton user={user} />
   ) : (
     <Link href="/login">
-      <User className="mr-2 h-4 w-4" />
+      <UserButton />
     </Link>
   );
 }

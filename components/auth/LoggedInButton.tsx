@@ -26,6 +26,7 @@ import {
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
 import { LogoutButton } from "./LogoutButton";
+import UserButton from "./UserButton";
 
 export type LoggedInButtonProps = {
   user: User;
@@ -35,7 +36,7 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
     <DropdownMenu>
       <AlertDialog>
         <DropdownMenuTrigger asChild>
-          <User2 className="mr-2 h-4 w-4" />
+          <UserButton />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Articles } from "@/types/collection";
+import { ArrowLeft, Mail, Star } from "lucide-react";
 
 type Props = {
   showView: Function;
@@ -8,9 +9,23 @@ type Props = {
 
 export const ArticleView = ({ showView, selectedArticle }: Props) => {
   return (
-    <div>
-      <Button onClick={() => showView("articles")}>Back to Articles</Button>
-      <div className="p-4 bg-white rounded-lg shadow-sm">
+    <div className="">
+      <div className="p-4 px-12 flex space-x-2 items-center">
+        <Button variant="ghost" className="">
+          <ArrowLeft onClick={() => showView("articles")} />
+        </Button>
+      </div>
+
+      <div className="max-w-4xl m-auto p-4">
+        <div className="flex mt-3">
+          <Button variant="ghost" className="">
+            <Star size={20} onClick={() => showView("articles")} />
+          </Button>
+          <Button variant="ghost" className="">
+            <Mail size={20} onClick={() => showView("articles")} />
+          </Button>
+        </div>
+
         <h3 className="text-lg font-semibold">{selectedArticle?.title}</h3>
         <p className="text-gray-700">{selectedArticle?.content}</p>
       </div>
