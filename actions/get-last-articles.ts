@@ -1,4 +1,9 @@
-import { Feeds } from "@/types/collection";
+import {
+  Feeds,
+  Articles,
+  FeedWithArticles,
+  FeedsWithArticlesFavoritesHistory,
+} from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
 
 export const getFeeds = async ({
@@ -10,24 +15,17 @@ export const getFeeds = async ({
     const supabase = createClient();
 
     const { data, error } = await supabase
-      .from("subscriptions")
-      .select(
-        `
-        feeds (*)
-      `
-      )
-      .eq("user_id", userId)
-      .eq("is_active", true);
+      .rpc("get_user_feeds", {
+        p_user_id: userId,
+      })
+      .select();
 
     if (error) {
       console.log("[GET_FEEDS] Error fetching feeds", error);
       return [];
     }
 
-    // Extraire les objets feeds des résultats
-    const feeds = data.map((item) => item.feeds!);
-
-    return feeds || [];
+    return data || [];
   } catch (error) {
     console.log("[GET_FEEDS]", error);
     return [];

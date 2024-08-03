@@ -1,18 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { FeedWithArticles } from "@/types/collection";
+import { Articles, FeedWithArticles } from "@/types/collection";
 import { formatDate } from "@/utils/format/formatDate";
 import { useState } from "react";
 import { ArticleView } from "./ArticleView";
 
 type Props = {
   showView: Function;
-  selectedFeed: FeedWithArticles;
+  items: Articles[];
 };
 
-export const ArticlesView = ({ showView, selectedFeed }: Props) => {
+export const ArticlesView = ({ showView, items }: Props) => {
   return (
     <div className="space-y-4">
-      {selectedFeed?.articles
+      {items
         .sort(
           (a, b) =>
             new Date(b.pub_date!).getTime() - new Date(a.pub_date!).getTime()

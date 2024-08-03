@@ -1,7 +1,7 @@
 import { SidebarItem } from "./MyfeedsSidebarItem";
 import AddFeedForm from "./AddFeedForm";
 import { ChevronDown, Newspaper, Rss, Star } from "lucide-react";
-import { FeedWithArticles } from "@/types/collection";
+import { Feeds, FeedWithArticles } from "@/types/collection";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -9,12 +9,13 @@ export default function MyfeedsSidebar({
   feeds,
   showView,
   selectedFeed,
+  currentView,
 }: {
-  feeds: FeedWithArticles[];
+  feeds: Feeds[];
   showView: Function;
   selectedFeed: FeedWithArticles;
+  currentView: string;
 }) {
-  const [feedsData, setFeedsData] = useState([]);
   const [activeData, setActiveData] = useState(null);
   const [isFeedsOpen, setIsFeedsOpen] = useState(false);
   return (
@@ -31,7 +32,8 @@ export default function MyfeedsSidebar({
         <SidebarItem
           icon={Star}
           label="Starred"
-          onClick={() => setActiveData(null)}
+          onClick={() => showView("starred")}
+          isActive={currentView === "starred"}
         />
 
         <SidebarItem
@@ -56,7 +58,9 @@ export default function MyfeedsSidebar({
                 label={feed.title!}
                 onClick={() => showView("articles", feed)}
                 isFeeds={true}
-                isActive={selectedFeed?.id === feed.id}
+                isActive={
+                  selectedFeed?.id === feed.id && currentView === "articles"
+                }
               />
             );
           })}

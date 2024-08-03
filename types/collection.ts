@@ -9,3 +9,12 @@ export type FeedWithArticles = Feeds & {
 };
 
 export type SubscriptionWithFeed = Subscription & { feeds: Feeds | null };
+
+export type EnrichedArticle = Articles & {
+  is_favorite: boolean;
+  is_in_history: boolean;
+};
+
+export type FeedsWithArticlesFavoritesHistory = Feeds & {
+  articles: EnrichedArticle[];
+};
