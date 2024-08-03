@@ -2,23 +2,18 @@ import { NextResponse } from "next/server";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { createClient } from "@/utils/supabase/server";
 
-export async function GET(
-  req: Request,
-  { params }: { params: { feedId: string } }
-) {
+export async function GET() {
   try {
-    await getRequiredAuthSession();
-    const { feedId } = params;
+    const user = await getRequiredAuthSession();
 
     const supabase = createClient();
 
-    const { data, error } = await supabase
-      .from("articles")
-      .select("*")
-      .eq("feed_id", feedId);
+    const { data, error } = await supabase.rpc("get_favorites", {
+      p_user_id: user.id,
+    });
 
     if (error) {
-      console.log("[GET_ARTICLES] Error fetching articles", error);
+      console.log("[GET_STARRED] Error fetching starred", error);
     }
 
     return NextResponse.json(data || []);

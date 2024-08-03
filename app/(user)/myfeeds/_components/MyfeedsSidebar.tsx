@@ -27,7 +27,8 @@ export default function MyfeedsSidebar({
         <SidebarItem
           icon={Newspaper}
           label="Unread"
-          onClick={() => setActiveData(null)}
+          onClick={() => showView("unread")}
+          isActive={currentView === "unread"}
         />
         <SidebarItem
           icon={Star}
@@ -51,7 +52,6 @@ export default function MyfeedsSidebar({
           )}
         >
           {feeds.map((feed) => {
-            console.log("selectedFeed", selectedFeed);
             return (
               <SidebarItem
                 key={feed.title}

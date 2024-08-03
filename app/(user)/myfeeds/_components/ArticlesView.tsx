@@ -11,7 +11,7 @@ type Props = {
 
 export const ArticlesView = ({ showView, items }: Props) => {
   return (
-    <div className="space-y-4">
+    <>
       {items
         .sort(
           (a, b) =>
@@ -20,7 +20,8 @@ export const ArticlesView = ({ showView, items }: Props) => {
         .map((article) => (
           <div
             key={article.id}
-            className="p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer bg-gray-50 border"
+            className="p-4 cursor-pointer bg-gray-50 border odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700
+"
             onClick={() => showView("article", undefined, article)}
           >
             <h3 className="font-semibold">{article.title}</h3>
@@ -29,6 +30,6 @@ export const ArticlesView = ({ showView, items }: Props) => {
             </p>
           </div>
         ))}
-    </div>
+    </>
   );
 };
