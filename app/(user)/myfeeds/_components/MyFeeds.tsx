@@ -68,7 +68,7 @@ export default function Myfeeds({ feeds }: { feeds: Feeds[] }) {
           </div>
         ) : (
           <>
-            {currentView === "articles" && selectedFeed && (
+            {currentView === "articles" && (
               <ArticlesView items={selectedArticles} showView={showView} />
             )}
             {(currentView === "starred" || currentView === "unread") && (

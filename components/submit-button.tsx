@@ -2,6 +2,7 @@
 
 import { useFormStatus } from "react-dom";
 import { type ComponentProps } from "react";
+import { Button } from "@/components/ui/button";
 
 type Props = ComponentProps<"button"> & {
   pendingText?: string;
@@ -13,8 +14,13 @@ export function SubmitButton({ children, pendingText, ...props }: Props) {
   const isPending = pending && action === props.formAction;
 
   return (
-    <button {...props} type="submit" aria-disabled={pending}>
+    <Button
+      variant="outline"
+      className={props.className}
+      type="submit"
+      aria-disabled={pending}
+    >
       {isPending ? pendingText : children}
-    </button>
+    </Button>
   );
 }

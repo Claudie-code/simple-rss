@@ -2,7 +2,7 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { SubmitButton } from "./submit-button";
+import { SubmitButton } from "../../../components/submit-button";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Mail } from "lucide-react";
 import Image from "next/image";

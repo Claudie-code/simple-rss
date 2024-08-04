@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Articles } from "@/types/collection";
+import { createClient } from "@/utils/supabase/server";
 import { ArrowLeft, Mail, Star } from "lucide-react";
 
 type Props = {
@@ -8,6 +9,11 @@ type Props = {
 };
 
 export const ArticleView = ({ showView, selectedArticle }: Props) => {
+  const addStarred = () => {
+    "use server";
+    const supabase = createClient();
+  };
+
   return (
     <div className="">
       <div className="p-4 px-12 flex space-x-2 items-center">
