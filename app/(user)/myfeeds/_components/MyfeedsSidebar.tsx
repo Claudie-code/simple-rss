@@ -7,12 +7,10 @@ import { cn } from "@/lib/utils";
 
 export default function MyfeedsSidebar({
   feeds,
-  showView,
   selectedFeed,
   currentView,
 }: {
   feeds: Feeds[];
-  showView: Function;
   selectedFeed: FeedWithArticles;
   currentView: string;
 }) {
@@ -27,20 +25,20 @@ export default function MyfeedsSidebar({
         <SidebarItem
           icon={Newspaper}
           label="Unread"
-          onClick={() => showView("unread")}
+          href="/myfeeds/unread"
           isActive={currentView === "unread"}
         />
         <SidebarItem
           icon={Star}
           label="Starred"
-          onClick={() => showView("starred")}
+          href="/myfeeds/starred"
           isActive={currentView === "starred"}
         />
 
         <SidebarItem
           icon={Rss}
           label="Feeds"
-          onClick={() => setIsFeedsOpen(!isFeedsOpen)}
+          href="/myfeeds"
           chevron={true}
           isFeedsOpen={isFeedsOpen}
         />
@@ -56,7 +54,7 @@ export default function MyfeedsSidebar({
               <SidebarItem
                 key={feed.title}
                 label={feed.title!}
-                onClick={() => showView("articles", feed)}
+                href={"/myfeeds/" + feed.id}
                 isFeeds={true}
                 isActive={
                   selectedFeed?.id === feed.id && currentView === "articles"

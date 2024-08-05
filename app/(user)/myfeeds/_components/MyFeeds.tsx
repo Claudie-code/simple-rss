@@ -57,7 +57,6 @@ export default function Myfeeds({ feeds }: { feeds: Feeds[] }) {
         <MyfeedsSidebar
           feeds={feeds}
           selectedFeed={selectedFeed!}
-          showView={showView}
           currentView={currentView}
         />
       </div>
@@ -69,10 +68,10 @@ export default function Myfeeds({ feeds }: { feeds: Feeds[] }) {
         ) : (
           <>
             {currentView === "articles" && (
-              <ArticlesView items={selectedArticles} showView={showView} />
+              <ArticlesView items={selectedArticles} />
             )}
             {(currentView === "starred" || currentView === "unread") && (
-              <ArticlesView items={selectedArticles} showView={showView} />
+              <ArticlesView items={selectedArticles} />
             )}
             {currentView === "article" && selectedArticle && (
               <ArticleView

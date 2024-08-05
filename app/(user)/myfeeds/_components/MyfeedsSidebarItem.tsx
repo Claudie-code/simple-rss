@@ -2,10 +2,11 @@
 
 import { ChevronDown, ChevronUp, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface SidebarItemProps {
   label: string;
-  onClick: () => void;
+  href: string;
   icon?: LucideIcon;
   chevron?: boolean;
   isActive?: boolean;
@@ -15,7 +16,7 @@ interface SidebarItemProps {
 
 export const SidebarItem = ({
   label,
-  onClick,
+  href,
   icon: Icon,
   chevron,
   isActive,
@@ -23,8 +24,8 @@ export const SidebarItem = ({
   isFeedsOpen,
 }: SidebarItemProps) => {
   return (
-    <button
-      onClick={onClick}
+    <Link
+      href={href}
       type="button"
       className={cn(
         "w-full flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20",
@@ -51,6 +52,6 @@ export const SidebarItem = ({
           isActive && "opacity-100"
         )}
       />
-    </button>
+    </Link>
   );
 };

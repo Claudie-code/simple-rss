@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Articles } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
 import { ArrowLeft, Mail, Star } from "lucide-react";
+import { useRouter } from "next/router";
 
 type Props = {
   showView: Function;
@@ -9,6 +10,8 @@ type Props = {
 };
 
 export const ArticleView = ({ showView, selectedArticle }: Props) => {
+  const router = useRouter();
+
   const addStarred = () => {
     "use server";
     const supabase = createClient();
@@ -18,7 +21,7 @@ export const ArticleView = ({ showView, selectedArticle }: Props) => {
     <div className="">
       <div className="p-4 px-12 flex space-x-2 items-center">
         <Button variant="ghost" className="">
-          <ArrowLeft onClick={() => showView("articles")} />
+          <ArrowLeft onClick={() => router.back()} />
         </Button>
       </div>
 
