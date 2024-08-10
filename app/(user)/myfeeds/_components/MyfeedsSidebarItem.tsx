@@ -3,13 +3,13 @@
 import { ChevronDown, ChevronUp, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface SidebarItemProps {
   label: string;
   href: string;
   icon?: LucideIcon;
   chevron?: boolean;
-  isActive?: boolean;
   isFeeds?: boolean;
   isFeedsOpen?: boolean;
 }
@@ -19,10 +19,16 @@ export const SidebarItem = ({
   href,
   icon: Icon,
   chevron,
-  isActive,
   isFeeds,
   isFeedsOpen,
 }: SidebarItemProps) => {
+  const pathname = usePathname();
+
+  const isActive =
+    (pathname === "/" && href === "/") ||
+    pathname === href ||
+    pathname?.startsWith(`${href}/`);
+
   return (
     <Link
       href={href}

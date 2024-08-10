@@ -2,23 +2,33 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { SubmitButton } from "../../../components/submit-button";
+import { SubmitButton } from "@/components/submit-button";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Mail } from "lucide-react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 
-export default function Login({
+export default async function Login({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    return redirect("/myfeeds");
+  }
+
   const signInWithGitHub = async (formData: FormData) => {
     "use server";
 
-    const origin = headers().get("origin");
     const supabase = createClient();
+    const origin = headers().get("origin");
 
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "github",
@@ -37,9 +47,8 @@ export default function Login({
   const signInWithGoogle = async (formData: FormData) => {
     "use server";
 
-    const origin = headers().get("origin");
     const supabase = createClient();
-
+    const origin = headers().get("origin");
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
@@ -57,10 +66,10 @@ export default function Login({
   const signInWithEmail = async (formData: FormData) => {
     "use server";
 
-    const origin = headers().get("origin");
     const email = formData.get("email") as string;
-    const supabase = createClient();
 
+    const supabase = createClient();
+    const origin = headers().get("origin");
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
       options: {

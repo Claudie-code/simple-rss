@@ -1,10 +1,9 @@
 import { createClient } from "@/utils/supabase/server";
+import { ArticlesView } from "./_components/ArticlesView";
 import { redirect } from "next/navigation";
-import { getFeeds } from "@/actions/get-feeds";
-import Myfeeds from "./_components/MyFeeds";
-import AuthButton from "@/components/auth/AuthButton";
+import { getLastArticles } from "@/actions/get-last-articles";
 
-export default async function MyFeedsLayout() {
+export default async function MyFeeds() {
   const supabase = createClient();
   const {
     data: { user },
@@ -13,17 +12,7 @@ export default async function MyFeedsLayout() {
   if (!user) {
     return redirect("/login");
   }
+  const lastArticles = await getLastArticles({ userId: user.id });
 
-  const feeds = await getFeeds({
-    userId: user.id,
-  });
-
-  return (
-    <>
-      <nav className="w-full flex justify-end border-b border-b-foreground/10 h-16 items-center p-3 px-16 text-sm">
-        <AuthButton />
-      </nav>
-      <Myfeeds feeds={feeds} />
-    </>
-  );
+  return <ArticlesView items={lastArticles} />;
 }
