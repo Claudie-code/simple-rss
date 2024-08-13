@@ -51,13 +51,13 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
     const { error } = await supabase
       .from("history")
       .delete()
-      .eq("article_id", 23566)
+      .eq("article_id", selectedArticle.id)
       .eq("user_id", "9f4819e9-9ea3-48e6-a9a7-4e7e42d3cdfe");
 
     if (error) {
-      console.error("Erreur lors de la suppression de l'historique:", error);
+      console.error("Error", error);
     } else {
-      console.log("Article retiré de l'historique");
+      console.log("Add unread");
     }
     redirect("/myfeeds/" + feedId);
   };

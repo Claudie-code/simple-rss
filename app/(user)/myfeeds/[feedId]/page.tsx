@@ -19,7 +19,7 @@ export default async function Feed({ params }: { params: { feedId: number } }) {
   });
 
   return articles.length > 0 ? (
-    <ArticlesView items={articles} />
+    <ArticlesView items={articles} userId={user.id} />
   ) : (
     <p className="m-auto p-12">No articles found</p>
   );

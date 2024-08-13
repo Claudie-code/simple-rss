@@ -5,7 +5,7 @@ export default function loading() {
   return (
     <>
       <Header />
-      <div className="flex h-full w-full items-center justify-center">
+      <div className="flex h-full w-full items-center justify-center p-10">
         <Loader size={32} />
       </div>
     </>

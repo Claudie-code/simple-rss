@@ -1,6 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
 import { Articles } from "@/types/collection";
-import { revalidateTag } from "next/cache";
 
 export const getArticlesFromFeed = async ({
   userId,
@@ -11,8 +10,6 @@ export const getArticlesFromFeed = async ({
 }): Promise<Articles[]> => {
   try {
     const supabase = createClient();
-
-    revalidateTag(`feed-${feedId}`);
 
     const { data, error } = await supabase.rpc("get_articles_from_feed", {
       p_user_id: userId,

@@ -18,5 +18,5 @@ export default async function Unread({
   }
   const articles = await getUnread({ userId: user.id });
 
-  return <ArticlesView items={articles} />;
+  return <ArticlesView items={articles} userId={user.id} />;
 }
