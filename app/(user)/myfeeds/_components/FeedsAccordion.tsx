@@ -14,17 +14,17 @@ interface SidebarItemProps {
 export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
   const pathname = usePathname();
   const isArticlePath = !!pathname.match(/^\/myfeeds\/\d+\/articles\/\d+$/);
+  const isFeedPath = !!pathname.match(/^\/myfeeds\/\d+$/);
 
   const [isFeedsOpen, setIsFeedsOpen] = useState(isArticlePath || false);
 
   useEffect(() => {
-    // Ouvrir le panneau si nous sommes sur un article ou un feed spécifique
-    if (isArticlePath) {
+    if (isArticlePath || isFeedPath) {
       setIsFeedsOpen(true);
     } else {
       setIsFeedsOpen(false);
     }
-  }, [pathname, isArticlePath]);
+  }, [pathname, isArticlePath, isFeedPath]);
 
   return (
     <>

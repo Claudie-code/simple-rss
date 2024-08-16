@@ -49,18 +49,16 @@ const AddFeedForm = () => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex space-x-8 mt-8"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex">
         <FormField
           control={form.control}
           name="url"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="grow">
               {/* <FormLabel>Feed title</FormLabel> */}
               <FormControl>
                 <Input
+                  className="rounded-none rounded-l"
                   disabled={isSubmitting}
                   placeholder="Add feed URL"
                   {...field}
@@ -73,11 +71,13 @@ const AddFeedForm = () => {
             </FormItem>
           )}
         />
-        <div className="flex items-center gap-x-2">
-          <Button type="submit" disabled={!isValid || isSubmitting}>
-            +
-          </Button>
-        </div>
+        <Button
+          type="submit"
+          disabled={!isValid || isSubmitting}
+          className="rounded-none rounded-r"
+        >
+          +
+        </Button>
       </form>
     </Form>
   );

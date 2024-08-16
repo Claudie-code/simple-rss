@@ -2,12 +2,13 @@ import { MdxProse } from "@/components/mdx-prose";
 import { SubmitButton } from "@/components/submit-button";
 import { Articles } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
-import { Mail, Star } from "lucide-react";
+import { Mail, SquareArrowOutUpRight, Star } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import parse from "html-react-parser";
 import "./mdx-prose.css";
 import { formatDate } from "@/utils/format/formatDate";
+import Link from "next/link";
 
 type Props = {
   selectedArticle: Articles;
@@ -68,23 +69,34 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
 
   return (
     <div className="max-w-4xl m-auto p-4">
-      <form className="flex mt-3">
-        <SubmitButton
-          formAction={addStarred}
-          className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
-        >
-          {selectedArticle.is_starred ? (
-            <Star fill="black" size={20} />
-          ) : (
-            <Star size={20} />
-          )}
-        </SubmitButton>
-        <SubmitButton
-          formAction={handleRemoveFromHistory}
-          className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
-        >
-          <Mail size={20} />
-        </SubmitButton>
+      <form className="flex justify-between mt-3">
+        <div className="flex ">
+          <SubmitButton
+            formAction={addStarred}
+            className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
+          >
+            {selectedArticle.is_starred ? (
+              <Star fill="black" size={20} />
+            ) : (
+              <Star size={20} />
+            )}
+          </SubmitButton>
+          <SubmitButton
+            formAction={handleRemoveFromHistory}
+            className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
+          >
+            <Mail size={20} />
+          </SubmitButton>
+        </div>
+        {selectedArticle?.link && (
+          <Link
+            href={selectedArticle.link}
+            target="_blank"
+            className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
+          >
+            <SquareArrowOutUpRight size={20} />
+          </Link>
+        )}
       </form>
 
       <h3 className="text-xl font-semibold">{selectedArticle?.title}</h3>
