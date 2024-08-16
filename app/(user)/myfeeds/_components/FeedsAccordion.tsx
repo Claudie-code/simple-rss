@@ -16,7 +16,7 @@ export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
 
   return (
     <>
-      <div onClick={() => setIsFeedsOpen(!isFeedsOpen)}>
+      <div onClick={() => setIsFeedsOpen(!isFeedsOpen)} className="flex">
         <SidebarItem
           icon={Rss}
           label="Feeds"
@@ -27,7 +27,7 @@ export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
       </div>
       <div
         className={cn(
-          "transition-all duration-300 overflow-hidden border-l border-gray-300 w-full",
+          "flex flex-col transition-all duration-300 overflow-hidden border-l border-gray-300 w-full",
           isFeedsOpen ? "max-h-screen" : "max-h-0"
         )}
       >

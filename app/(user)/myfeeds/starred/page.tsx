@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { ArticlesView } from "../_components/ArticlesView";
 import { getStarred } from "@/actions/get-starred";
+import AuthButton from "@/components/auth/AuthButton";
 
 export default async function Starred() {
   const supabase = createClient();

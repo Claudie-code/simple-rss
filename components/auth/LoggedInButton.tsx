@@ -49,7 +49,7 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
               >
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Settings</span>
-                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                <DropdownMenuShortcut></DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
@@ -59,7 +59,7 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
               >
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Import/Export OPML</span>
-                <DropdownMenuShortcut>⌘O</DropdownMenuShortcut>
+                <DropdownMenuShortcut></DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
@@ -68,7 +68,7 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
             <DropdownMenuItem>
               <LogOut className="mr-2 h-4 w-4" />
               <span>Log out</span>
-              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              <DropdownMenuShortcut></DropdownMenuShortcut>
             </DropdownMenuItem>
           </AlertDialogTrigger>
         </DropdownMenuContent>

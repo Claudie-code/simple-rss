@@ -1,0 +1,165 @@
+.md-post blockquote,
+.md-post ol,
+.md-post p,
+.md-post ul {
+  margin: 20px auto;
+}
+
+.md-post h2 {
+  margin-top: 1rem;
+  margin-bottom: 2px;
+  font-size: 1.75rem;
+  line-height: 2rem;
+  display: inline-block;
+}
+
+.md-post h1,
+.md-post h2,
+.md-post h3 {
+  font-weight: 700;
+}
+
+.md-post h3 {
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-top: 16px;
+  margin-bottom: 2px;
+}
+
+.md-post ul {
+  list-style: inside;
+  padding-left: 15px;
+}
+
+.md-post li {
+  margin-bottom: 0.5rem;
+}
+
+.md-post {
+  margin-bottom: 10px;
+}
+
+.md-post li input[type="checkbox"]:checked + * {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.md-post li:has(input[type="checkbox"]) {
+  list-style-type: none;
+}
+
+.md-post aside {
+  background-color: #ededed; /* Couleur de fond claire */
+  padding: 20px; /* Espace interne */
+  margin: 20px 0; /* Espace externe en haut et en bas */
+  font-family: Arial, sans-serif; /* Police de caractères */
+  color: #333; /* Couleur du texte */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.md-post aside::before {
+  content: "💡";
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+.md-post aside p {
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.md-post a {
+  color: #007bff;
+  text-decoration: none;
+  padding: 2px 4px; /* Espace interne pour éviter que le fond touche le texte */
+  border-radius: 4px; /* Angles arrondis */
+  transition: background-color 0.2s ease, color 0.2s ease; /* Transition douce */
+}
+
+.md-post a:hover {
+  background-color: #007bff;
+  color: #fff; /* Couleur du texte blanche au survol */
+}
+
+.md-post :not(pre) > code {
+  display: inline-block;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: #f5f7fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  color: #e83e8c;
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+
+.md-post details {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.md-post summary {
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
+  background-color: #eee;
+  border-radius: 4px;
+  outline: none;
+  user-select: none;
+}
+
+.md-post summary:hover {
+  background-color: #e3e3e3;
+}
+
+.md-post details[open] summary {
+  background-color: #e3e3e3;
+}
+
+/* Style the custom checkbox */
+.md-post input[type="checkbox"] {
+  width: 25px; /* Set desired width */
+  height: 25px; /* Set desired height */
+  appearance: none; /* Remove default styling */
+  background-color: #eee;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  outline: none; /* Remove focus outline */
+  vertical-align: middle; /* Align vertically with text */
+  margin-right: 5px; /* Add margin for spacing */
+}
+
+/* Style the checked state */
+.md-post input[type="checkbox"]:checked {
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
+
+/* Create the checkmark/indicator */
+.md-post input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.md-post pre {
+  border-radius: 6px;
+}

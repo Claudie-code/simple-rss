@@ -1,9 +1,13 @@
+import { MdxProse } from "@/components/mdx-prose";
 import { SubmitButton } from "@/components/submit-button";
 import { Articles } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
 import { Mail, Star } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import parse from "html-react-parser";
+import "./mdx-prose.css";
+import { formatDate } from "@/utils/format/formatDate";
 
 type Props = {
   selectedArticle: Articles;
@@ -83,8 +87,14 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
         </SubmitButton>
       </form>
 
-      <h3 className="text-lg font-semibold">{selectedArticle?.title}</h3>
-      <p className="text-gray-700">{selectedArticle?.content}</p>
+      <h3 className="text-xl font-semibold">{selectedArticle?.title}</h3>
+      <p className="mb-5 text-foreground/70">
+        {formatDate(selectedArticle.pub_date!)} by {selectedArticle.author}
+      </p>
+      <div className="text-lg md-post">
+        {parse(selectedArticle?.content!)}
+        {/* <MdxProse markdown={selectedArticle?.content!} /> */}
+      </div>
     </div>
   );
 };

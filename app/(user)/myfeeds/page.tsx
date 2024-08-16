@@ -14,5 +14,5 @@ export default async function MyFeeds() {
   }
   const lastArticles = await getLastArticles({ userId: user.id });
 
-  return <ArticlesView items={lastArticles} />;
+  return <ArticlesView items={lastArticles} userId={user.id} />;
 }

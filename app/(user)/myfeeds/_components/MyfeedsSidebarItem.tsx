@@ -24,10 +24,7 @@ export const SidebarItem = ({
 }: SidebarItemProps) => {
   const pathname = usePathname();
 
-  const isActive =
-    (pathname === "/" && href === "/") ||
-    pathname === href ||
-    pathname?.startsWith(`${href}/`);
+  const isActive = pathname === href || pathname === `${href}/`;
 
   return (
     <Link
