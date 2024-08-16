@@ -1,18 +1,30 @@
 "use client";
 
-import { ChevronDown, ChevronUp, LucideIcon, Rss } from "lucide-react";
+import { Rss } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SidebarItem } from "./MyfeedsSidebarItem";
 import { Feeds } from "@/types/collection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface SidebarItemProps {
   feeds: Feeds[];
-  isFeedsOpen?: boolean;
 }
 
 export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
-  const [isFeedsOpen, setIsFeedsOpen] = useState(false);
+  const pathname = usePathname();
+  const isArticlePath = !!pathname.match(/^\/myfeeds\/\d+\/articles\/\d+$/);
+
+  const [isFeedsOpen, setIsFeedsOpen] = useState(isArticlePath || false);
+
+  useEffect(() => {
+    // Ouvrir le panneau si nous sommes sur un article ou un feed spécifique
+    if (isArticlePath) {
+      setIsFeedsOpen(true);
+    } else {
+      setIsFeedsOpen(false);
+    }
+  }, [pathname, isArticlePath]);
 
   return (
     <>

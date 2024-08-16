@@ -24,7 +24,11 @@ export const SidebarItem = ({
 }: SidebarItemProps) => {
   const pathname = usePathname();
 
-  const isActive = pathname === href || pathname === `${href}/`;
+  const isArticlePath = pathname.match(/^\/myfeeds\/\d+\/articles\/\d+$/);
+
+  const isActive =
+    pathname === href ||
+    (isArticlePath && pathname.split("/").slice(0, -2).join("/") === href);
 
   return (
     <Link
@@ -48,7 +52,8 @@ export const SidebarItem = ({
           {label}
         </span>
       </div>
-      {chevron && (isFeedsOpen ? <ChevronUp /> : <ChevronDown />)}
+      {chevron &&
+        (isFeedsOpen || isArticlePath ? <ChevronUp /> : <ChevronDown />)}
       <div
         className={cn(
           "ml-auto opacity-0 border-2 border-teal-700 h-full transition-all",
