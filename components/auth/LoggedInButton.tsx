@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { User } from "@supabase/supabase-js";
-import { Loader, LogOut, Settings, User as User2 } from "lucide-react";
+import { Loader, LogOut, Rss, Settings, User as User2 } from "lucide-react";
 import Link from "next/link";
 import {
   AlertDialog,
@@ -44,7 +44,20 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <Link
-                href="/settings"
+                href="/myfeeds"
+                className="flex items-center justify-between w-full"
+              >
+                <Rss className="mr-2 h-4 w-4" />
+                <span>My Feeds</span>
+                <DropdownMenuShortcut></DropdownMenuShortcut>
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <Link
+                href="/settings/subscriptions"
                 className="flex items-center justify-between w-full"
               >
                 <Settings className="mr-2 h-4 w-4" />

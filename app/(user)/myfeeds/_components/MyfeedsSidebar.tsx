@@ -6,10 +6,16 @@ import { Newspaper, Star } from "lucide-react";
 import { Feeds } from "@/types/collection";
 import { FeedsAccordion } from "./FeedsAccordion";
 
-export default function MyfeedsSidebar({ feeds }: { feeds: Feeds[] }) {
+export default function MyfeedsSidebar({
+  feeds,
+  setOpen,
+}: {
+  feeds: Feeds[];
+  setOpen?: Function;
+}) {
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm">
-      <div className="p-6">
+      <div className="p-6 mt-6 lg:mt-0">
         <AddFeedForm />
       </div>
       <div className="flex flex-col w-full">

@@ -26,7 +26,7 @@ export default async function Article({
 
   return (
     <>
-      <div className="absolute top-[93px] pl-10 flex space-x-2 items-center">
+      <div className="absolute top-[93px] pl-10 space-x-2 items-center hidden 2xl:flex">
         <BackButton />
       </div>
       {article ? (

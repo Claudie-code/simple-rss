@@ -1,4 +1,3 @@
-import { MdxProse } from "@/components/mdx-prose";
 import { SubmitButton } from "@/components/submit-button";
 import { Articles } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
@@ -9,6 +8,8 @@ import parse from "html-react-parser";
 import "./mdx-prose.css";
 import { formatDate } from "@/utils/format/formatDate";
 import Link from "next/link";
+import BackButton from "@/components/back-button";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   selectedArticle: Articles;
@@ -68,9 +69,12 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
   };
 
   return (
-    <div className="max-w-4xl m-auto p-4">
+    <div className="max-w-4xl m-auto lg:p-4 px-4">
       <form className="flex justify-between mt-3">
         <div className="flex ">
+          <div className="2xl:hidden">
+            <BackButton />
+          </div>
           <SubmitButton
             formAction={addStarred}
             className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
@@ -103,10 +107,14 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
       <p className="mb-5 text-foreground/70">
         {formatDate(selectedArticle.pub_date!)} by {selectedArticle.author}
       </p>
-      <div className="text-lg md-post">
-        {parse(selectedArticle?.content!)}
-        {/* <MdxProse markdown={selectedArticle?.content!} /> */}
-      </div>
+      <div className="text-lg md-post">{parse(selectedArticle?.content!)}</div>
+      {selectedArticle?.link && (
+        <Link href={selectedArticle.link} target="_blank" className="mt-4">
+          <Button>
+            Read More <SquareArrowOutUpRight size={15} className="ml-2 mb-1" />
+          </Button>
+        </Link>
+      )}
     </div>
   );
 };

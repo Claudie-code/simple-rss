@@ -20,8 +20,8 @@ export default async function Subscriptions({}: Props) {
   });
 
   return (
-    <div className="max-w-4xl m-auto">
-      <h1 className="mb-4 text-lg font-medium">Manage Subscriptions</h1>
+    <div className="p-6">
+      <h2 className="text-2xl font-semibold mb-4">Manage Subscriptions</h2>
       <SubscriptionList subscriptions={subscriptions} />
     </div>
   );
