@@ -8,8 +8,10 @@ import { createClient } from "@/utils/supabase/server";
 
 export const getLastArticles = async ({
   userId,
+  offset = 0,
 }: {
   userId: string;
+  offset?: number;
 }): Promise<Articles[]> => {
   try {
     const supabase = createClient();
@@ -18,7 +20,8 @@ export const getLastArticles = async ({
       .rpc("get_latest_articles", {
         p_user_id: userId,
       })
-      .select();
+      .select()
+      .range(offset, offset + 100 - 1);
 
     if (error) {
       console.log("[GET_LAST_ARTICLES] Error fetching last articles", error);

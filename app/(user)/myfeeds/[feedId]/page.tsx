@@ -19,7 +19,12 @@ export default async function Feed({ params }: { params: { feedId: number } }) {
   });
 
   return articles.length > 0 ? (
-    <ArticlesView items={articles} userId={user.id} />
+    <ArticlesView
+      items={articles}
+      userId={user.id}
+      functionFetchMore="getArticlesFromFeed"
+      feedId={params.feedId}
+    />
   ) : (
     <p className="m-auto p-12">No articles found</p>
   );

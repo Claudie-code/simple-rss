@@ -15,5 +15,11 @@ export default async function Starred() {
   }
   const articles = await getStarred({ userId: user.id });
 
-  return <ArticlesView items={articles} userId={user.id} />;
+  return (
+    <ArticlesView
+      items={articles}
+      userId={user.id}
+      functionFetchMore="getStarred"
+    />
+  );
 }

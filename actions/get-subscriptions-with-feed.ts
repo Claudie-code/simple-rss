@@ -9,17 +9,18 @@ export const getSubscriptionsWithFeed = async ({
   try {
     const supabase = createClient();
 
-    const { data: subscriptions, error: subsError } = await supabase
+    const { data, error } = await supabase
       .from("subscriptions")
       .select("*, feeds (*)")
-      .eq("user_id", userId);
+      .eq("user_id", userId)
+      .order("created_at", { ascending: true });
 
-    if (subsError) {
-      console.log("[GET_FEEDS] Error fetching subscriptions", subsError);
+    if (error) {
+      console.log("[GET_FEEDS] Error fetching subscriptions", error);
       return [];
     }
 
-    return subscriptions || [];
+    return data || [];
   } catch (error) {
     console.log("[GET_SUBSCRIPTION_WITH_FEED]", error);
     return [];

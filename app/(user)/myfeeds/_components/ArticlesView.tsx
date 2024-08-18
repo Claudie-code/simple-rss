@@ -1,22 +1,42 @@
 "use client";
 
-import { upsertHistory } from "@/actions/upsert-history";
 import { Articles } from "@/types/collection";
 import { formatDate } from "@/utils/format/formatDate";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
-import ArticlesViewUpsertHistory from "./action";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Loader } from "@/components/ui/loader";
+import { debounce } from "lodash";
+import { ArticlesViewUpsertHistory, fetchMoreArticles } from "./action";
+import toast from "react-hot-toast";
 
 type Props = {
   items: Articles[];
   userId: string;
+  functionFetchMore:
+    | "getLastArticles"
+    | "getStarred"
+    | "getArticlesFromFeed"
+    | "getUnread";
+  feedId?: number;
 };
 
-export const ArticlesView = ({ items, userId }: Props) => {
+export const ArticlesView = ({
+  items,
+  userId,
+  functionFetchMore,
+  feedId,
+}: Props) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [isPendingMoreArticles, startTransitionMoreArticles] = useTransition();
+  const PAGE_COUNT = 100;
+  const containerRef = useRef(null);
+  const [loadedArticles, setLoadedArticles] = useState(items);
+  const [offset, setOffset] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [hasMoreArticles, setHasMoreArticles] = useState(true);
 
   const handleArticleClick = async (
     articleIsRead: boolean,
@@ -30,15 +50,68 @@ export const ArticlesView = ({ items, userId }: Props) => {
     });
   };
 
+  const handleScroll = () => {
+    if (containerRef.current && typeof window !== "undefined") {
+      const container: any = containerRef.current;
+      const { bottom } = container.getBoundingClientRect();
+      const { innerHeight } = window;
+      const isNowInView = bottom <= innerHeight;
+      if (isNowInView !== isInView) {
+        setIsInView(isNowInView);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleDebouncedScroll = debounce(() => handleScroll(), 200);
+    window.addEventListener("scroll", handleDebouncedScroll);
+    return () => {
+      window.removeEventListener("scroll", handleDebouncedScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isInView && !isLoading && hasMoreArticles) {
+      loadMoreArticles();
+    }
+  }, [isInView, hasMoreArticles]);
+
+  const loadMoreArticles = async () => {
+    setIsLoading(true);
+
+    startTransitionMoreArticles(async () => {
+      try {
+        const newArticles = await fetchMoreArticles({
+          userId,
+          offset: offset + PAGE_COUNT,
+          functionFetchMore,
+          feedId,
+        });
+
+        if (newArticles.length < PAGE_COUNT) {
+          setHasMoreArticles(false);
+        }
+
+        setLoadedArticles((prevArticles) => [...prevArticles, ...newArticles]);
+        setOffset((prevOffset) => prevOffset + PAGE_COUNT);
+      } catch (error) {
+        toast.error("Something went wrong");
+      } finally {
+        setIsLoading(false);
+        setIsInView(false);
+      }
+    });
+  };
+
   return (
-    <>
+    <div ref={containerRef} className="flex flex-col">
       {isPending && (
         <div className="flex h-full w-full items-center justify-center p-10">
           <Loader size={32} />
         </div>
       )}
       {!isPending &&
-        items
+        loadedArticles
           .sort(
             (a, b) =>
               new Date(b.pub_date!).getTime() - new Date(a.pub_date!).getTime()
@@ -59,12 +132,22 @@ export const ArticlesView = ({ items, userId }: Props) => {
                 );
               }}
             >
-              <h3 className="font-semibold">{article.title}</h3>
+              <h3 className="font-semibold truncate">{article.title}</h3>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 {formatDate(article.pub_date ?? "")}
               </p>
             </Link>
           ))}
-    </>
+      {isPendingMoreArticles && (
+        <div className="flex h-full w-full items-center justify-center p-10">
+          <Loader size={32} />
+        </div>
+      )}
+      {!hasMoreArticles && (
+        <div className="flex h-full w-full items-center justify-center p-10 text-gray-500">
+          No more articles to load.
+        </div>
+      )}
+    </div>
   );
 };
