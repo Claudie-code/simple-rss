@@ -21,9 +21,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  url: z.string().min(1, {
-    message: "Feed URL is required",
-  }),
+  url: z
+    .string()
+    .min(1, {
+      message: "Feed URL is required",
+    })
+    .url({
+      message: "Invalid URL format",
+    }),
 });
 
 const AddFeedForm = () => {
@@ -42,8 +47,8 @@ const AddFeedForm = () => {
       const response = await axios.post("/api/feeds", values);
       toast.success("Feed created");
       form.reset();
-    } catch {
-      toast.error("Something went wrong");
+    } catch (error) {
+      toast.error("Feed URL is invalid or unreachable.");
     }
   };
 

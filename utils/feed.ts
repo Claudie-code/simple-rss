@@ -17,25 +17,28 @@ const parser = new Parser({
 
 export async function fetchAndParseFeed(
   url: string
-): Promise<Parser.Output<any> | null> {
+): Promise<{ feed?: Parser.Output<any>; error?: string }> {
   try {
-    return await parser.parseURL(url);
+    const feed = await parser.parseURL(url);
+    return { feed };
   } catch (error) {
-    console.error(`Error parsing feed from ${url}`, error);
-    return null;
+    console.error(`Error parsing feed from ${url}:`, error);
+    return { error: `Feed URL ${url} is invalid or unreachable.` };
   }
 }
 
-export async function findRssFeed(url: string): Promise<string | null> {
+export async function findRssFeed(
+  url: string
+): Promise<{ feedUrl?: string; error?: string }> {
   try {
     const result = await rssFinder(url);
     if (result.feedUrls && result.feedUrls.length > 0) {
-      return result.feedUrls[0].url; // Returning the first found feed URL
+      return { feedUrl: result.feedUrls[0].url };
     }
-    return null;
+    return { error: `No RSS feed found for URL ${url}.` };
   } catch (error) {
-    console.error(`Error finding RSS feed from ${url}`, error);
-    return null;
+    console.error(`Error finding RSS feed from ${url}:`, error);
+    return { error: `Error finding RSS feed from ${url}.` };
   }
 }
 
@@ -50,16 +53,16 @@ export async function getFeed(
   link?: string
 ): Promise<GetFeedResult> {
   // Try fetching the feed directly from the URL
-  let feed = await fetchAndParseFeed(url);
+  let { feed, error } = await fetchAndParseFeed(url);
 
   if (feed) {
     return { feed, correctUrl: null };
   }
 
   // Try to find RSS feed using rss-finder for the URL
-  const rssFeedUrl = await findRssFeed(url);
+  const { feedUrl: rssFeedUrl, error: findError } = await findRssFeed(url);
   if (rssFeedUrl) {
-    feed = await fetchAndParseFeed(rssFeedUrl);
+    ({ feed, error } = await fetchAndParseFeed(rssFeedUrl));
     if (feed) {
       return { feed, correctUrl: rssFeedUrl };
     }
@@ -67,22 +70,27 @@ export async function getFeed(
 
   // If still no feed found, try the link if provided
   if (link) {
-    feed = await fetchAndParseFeed(link);
+    ({ feed, error } = await fetchAndParseFeed(link));
 
     if (feed) {
       return { feed, correctUrl: null };
     }
 
-    const rssFeedUrlFromLink = await findRssFeed(link);
+    const { feedUrl: rssFeedUrlFromLink, error: findErrorFromLink } =
+      await findRssFeed(link);
     if (rssFeedUrlFromLink) {
-      feed = await fetchAndParseFeed(rssFeedUrlFromLink);
+      ({ feed, error } = await fetchAndParseFeed(rssFeedUrlFromLink));
       if (feed) {
         return { feed, correctUrl: rssFeedUrlFromLink };
       }
     }
   }
 
+  console.error(
+    `Error fetching feed from ${url} (or ${link}):`,
+    error || findError
+  );
   return {
-    error: `Feed URL ${url} (or ${link}) is invalid or unreachable`,
+    error: `Feed URL ${url} (or ${link}) is invalid or unreachable.`,
   };
 }
