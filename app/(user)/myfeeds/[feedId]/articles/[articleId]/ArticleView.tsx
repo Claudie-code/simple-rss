@@ -1,7 +1,7 @@
 import { SubmitButton } from "@/components/submit-button";
 import { Articles } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
-import { Mail, SquareArrowOutUpRight, Star } from "lucide-react";
+import { Eye, Mail, SquareArrowOutUpRight, Star } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import parse from "html-react-parser";
@@ -85,6 +85,7 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
               <Star size={20} />
             )}
           </SubmitButton>
+
           <SubmitButton
             formAction={handleRemoveFromHistory}
             className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
@@ -92,14 +93,23 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
             <Mail size={20} />
           </SubmitButton>
         </div>
+
         {selectedArticle?.link && (
-          <Link
-            href={selectedArticle.link}
-            target="_blank"
-            className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
-          >
-            <SquareArrowOutUpRight size={20} />
-          </Link>
+          <div className="flex">
+            <SubmitButton
+              formAction={handleRemoveFromHistory}
+              className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
+            >
+              <Eye size={20} />
+            </SubmitButton>
+            <Link
+              href={selectedArticle.link}
+              target="_blank"
+              className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
+            >
+              <SquareArrowOutUpRight size={20} />
+            </Link>
+          </div>
         )}
       </form>
 

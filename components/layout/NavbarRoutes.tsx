@@ -18,7 +18,7 @@ export const NavbarRoutes = () => {
           size="sm"
           variant="ghost"
           className={`text-slate-700 ml-4 ${
-            isMyfeedsPage && "text-teal-700 hover:text-teal-900"
+            isMyfeedsPage && "text-blue-700 hover:text-blue-900"
           }`}
         >
           <Settings className="mr-1" />

@@ -96,7 +96,7 @@ export default async function Login({
         </Button>
       </Link>
 
-      <div className="flex-1 flex flex-col justify-center gap-6 text-foreground">
+      <div className="flex-1 flex flex-col justify-center gap-6 text-foreground pt-40">
         <form className="flex flex-col w-full">
           <SubmitButton
             formAction={signInWithGitHub}

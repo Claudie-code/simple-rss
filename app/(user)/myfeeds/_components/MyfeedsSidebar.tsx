@@ -15,7 +15,7 @@ export default function MyfeedsSidebar({
 }) {
   return (
     <div
-      className="h-full flex flex-col overflow-y-auto bg-gray-100"
+      className="h-full flex flex-col overflow-y-auto bg-white"
       style={{ boxShadow: "inset 0 2px 10px 0 rgb(0 0 0 / 0.15)" }}
     >
       <div className="p-6 mt-6 lg:mt-0">

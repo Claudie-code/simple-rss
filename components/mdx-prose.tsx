@@ -2,13 +2,13 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrism from "rehype-prism-plus";
 import "./mdx-prose.css";
 
-export type MdxProseProps = {
+export type MdxPstoneProps = {
   markdown: string;
 };
 
-export const MdxProse = (props: MdxProseProps) => {
+export const MdxPstone = (props: MdxPstoneProps) => {
   return (
-    <article className="prose m-auto dark:prose-invert xl:prose-xl md-post">
+    <article className="pstone m-auto dark:pstone-invert xl:pstone-xl md-post">
       <MDXRemote
         options={{
           mdxOptions: {
