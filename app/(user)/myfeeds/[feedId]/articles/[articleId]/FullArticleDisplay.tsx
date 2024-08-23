@@ -2,18 +2,22 @@
 
 import { ParserResult } from "@postlight/parser";
 import parse from "html-react-parser";
+import "./mdx-prose.css";
+import { useEffect } from "react";
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
 
-type FullArticleDisplayProps = {
+type articleDisplayProps = {
   article: ParserResult;
 };
 
-const FullArticleDisplay = ({ article }: FullArticleDisplayProps) => {
+const articleDisplay = ({ article }: articleDisplayProps) => {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   return (
     <div>
-      <h3 className="text-xl font-semibold">{article.title}</h3>
-      <p className="mb-5 text-foreground/70">
-        {article.author && `by ${article.author}`}
-      </p>
       {article.lead_image_url && (
         <img
           src={article.lead_image_url}
@@ -22,13 +26,8 @@ const FullArticleDisplay = ({ article }: FullArticleDisplayProps) => {
         />
       )}
       <div className="text-lg md-post">{parse(article.content)}</div>
-      {/* <Link href={articleLink} target="_blank" className="mt-4">
-        <Button>
-          Read More <SquareArrowOutUpRight size={15} className="ml-2 mb-1" />
-        </Button>
-      </Link> */}
     </div>
   );
 };
 
-export default FullArticleDisplay;
+export default articleDisplay;

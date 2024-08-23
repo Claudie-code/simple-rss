@@ -11,19 +11,27 @@ export function formatDate(dateString: string): string {
   const diffHour = Math.floor(diffMin / 60); // Différence en heures
   const diffDay = Math.floor(diffHour / 24); // Différence en jours
 
-  let result: string;
+  const oneWeekInDays = 7; // Nombre de jours dans une semaine
 
-  if (diffDay > 0) {
-    result = `${diffDay} day${diffDay > 1 ? "s" : ""} ago`;
-  } else if (diffHour > 0) {
-    result = `${diffHour} hour${diffHour > 1 ? "s" : ""} ago`;
-  } else if (diffMin > 0) {
-    result = `${diffMin} minute${diffMin > 1 ? "s" : ""} ago`;
-  } else if (diffSec > 0) {
-    result = `${diffSec} second${diffSec > 1 ? "s" : ""} ago`;
+  if (diffDay > oneWeekInDays) {
+    // Afficher la date complète si la date est plus ancienne qu'une semaine
+    return date.toLocaleDateString(); // Format par défaut basé sur la locale
   } else {
-    result = "just now";
-  }
+    // Afficher le temps écoulé pour les dates plus récentes
+    let result: string;
 
-  return result;
+    if (diffDay > 0) {
+      result = `${diffDay} day${diffDay > 1 ? "s" : ""} ago`;
+    } else if (diffHour > 0) {
+      result = `${diffHour} hour${diffHour > 1 ? "s" : ""} ago`;
+    } else if (diffMin > 0) {
+      result = `${diffMin} minute${diffMin > 1 ? "s" : ""} ago`;
+    } else if (diffSec > 0) {
+      result = `${diffSec} second${diffSec > 1 ? "s" : ""} ago`;
+    } else {
+      result = "just now";
+    }
+
+    return result;
+  }
 }

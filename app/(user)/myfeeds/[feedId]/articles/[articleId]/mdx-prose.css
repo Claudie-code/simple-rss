@@ -163,3 +163,18 @@
 .md-post pre {
   border-radius: 6px;
 }
+
+.md-post time {
+  color: #555;
+  font-size: 1rem; /* Slightly smaller font size */
+  display: block; /* Make sure it's on its own line */
+  margin-bottom: 10px; /* Space below the time element */
+}
+
+.md-post img {
+  max-width: 100%; /* Ensures the image is responsive and doesn't overflow the container */
+  height: auto; /* Maintains the aspect ratio */
+  display: block; /* Removes any inline spacing issues */
+  margin: 20px auto; /* Centers the image and adds vertical space */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a soft shadow for depth */
+}

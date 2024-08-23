@@ -1,13 +1,16 @@
 import { SubmitButton } from "@/components/submit-button";
 import { Articles } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
-import { Mail, Star } from "lucide-react";
+import { Mail, SquareArrowOutUpRight, Star } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import BackButton from "@/components/back-button";
 import FullArticleDisplay from "./FullArticleDisplay";
-import { getArticle } from "@/actions/get-article";
 import { fetchFullContent } from "./action";
+import Link from "next/link";
+import { formatDate } from "@/utils/format/formatDate";
+import { Button } from "@/components/ui/button";
+import parse from "html-react-parser";
 
 type Props = {
   selectedArticle: Articles;
@@ -20,7 +23,7 @@ export const ArticleView = async ({
   userId,
   feedId,
 }: Props) => {
-  const { result } = await fetchFullContent(selectedArticle.link!);
+  const { result, error } = await fetchFullContent(selectedArticle.link!);
 
   const addStarred = async (formData: FormData) => {
     "use server";
@@ -97,10 +100,37 @@ export const ArticleView = async ({
             <Mail size={20} />
           </SubmitButton>
         </div>
+        {selectedArticle.link && (
+          <Link
+            href={selectedArticle.link!}
+            target="_blank"
+            className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
+          >
+            <SquareArrowOutUpRight size={20} />
+          </Link>
+        )}
       </form>
-
-      {/* Full article content fetched and displayed */}
-      <FullArticleDisplay article={result} />
+      <h3 className="text-xl font-semibold">{selectedArticle?.title}</h3>
+      <p className="mb-5 text-foreground/70">
+        {formatDate(selectedArticle.pub_date!)} by {selectedArticle.author}
+      </p>
+      {result ? (
+        <FullArticleDisplay article={result} />
+      ) : (
+        <div>
+          <div className="text-lg md-post">
+            {parse(selectedArticle?.content!)}
+          </div>
+          {selectedArticle?.link && (
+            <Link href={selectedArticle.link} target="_blank" className="mt-4">
+              <Button>
+                Read More{" "}
+                <SquareArrowOutUpRight size={15} className="ml-2 mb-1" />
+              </Button>
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 };
