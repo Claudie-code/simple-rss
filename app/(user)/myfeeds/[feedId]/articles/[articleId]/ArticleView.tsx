@@ -1,15 +1,13 @@
 import { SubmitButton } from "@/components/submit-button";
 import { Articles } from "@/types/collection";
 import { createClient } from "@/utils/supabase/server";
-import { Eye, Mail, SquareArrowOutUpRight, Star } from "lucide-react";
+import { Mail, Star } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import parse from "html-react-parser";
-import "./mdx-prose.css";
-import { formatDate } from "@/utils/format/formatDate";
-import Link from "next/link";
 import BackButton from "@/components/back-button";
-import { Button } from "@/components/ui/button";
+import FullArticleDisplay from "./FullArticleDisplay";
+import { getArticle } from "@/actions/get-article";
+import { fetchFullContent } from "./action";
 
 type Props = {
   selectedArticle: Articles;
@@ -17,7 +15,13 @@ type Props = {
   feedId: number;
 };
 
-export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
+export const ArticleView = async ({
+  selectedArticle,
+  userId,
+  feedId,
+}: Props) => {
+  const { result } = await fetchFullContent(selectedArticle.link!);
+
   const addStarred = async (formData: FormData) => {
     "use server";
 
@@ -58,7 +62,7 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
       .from("history")
       .delete()
       .eq("article_id", selectedArticle.id)
-      .eq("user_id", "9f4819e9-9ea3-48e6-a9a7-4e7e42d3cdfe");
+      .eq("user_id", userId);
 
     if (error) {
       console.error("Error", error);
@@ -71,7 +75,7 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
   return (
     <div className="max-w-4xl m-auto lg:p-4 px-4">
       <form className="flex justify-between mt-3">
-        <div className="flex ">
+        <div className="flex">
           <div className="2xl:hidden">
             <BackButton />
           </div>
@@ -93,38 +97,10 @@ export const ArticleView = ({ selectedArticle, userId, feedId }: Props) => {
             <Mail size={20} />
           </SubmitButton>
         </div>
-
-        {selectedArticle?.link && (
-          <div className="flex">
-            <SubmitButton
-              formAction={handleRemoveFromHistory}
-              className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
-            >
-              <Eye size={20} />
-            </SubmitButton>
-            <Link
-              href={selectedArticle.link}
-              target="_blank"
-              className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
-            >
-              <SquareArrowOutUpRight size={20} />
-            </Link>
-          </div>
-        )}
       </form>
 
-      <h3 className="text-xl font-semibold">{selectedArticle?.title}</h3>
-      <p className="mb-5 text-foreground/70">
-        {formatDate(selectedArticle.pub_date!)} by {selectedArticle.author}
-      </p>
-      <div className="text-lg md-post">{parse(selectedArticle?.content!)}</div>
-      {selectedArticle?.link && (
-        <Link href={selectedArticle.link} target="_blank" className="mt-4">
-          <Button>
-            Read More <SquareArrowOutUpRight size={15} className="ml-2 mb-1" />
-          </Button>
-        </Link>
-      )}
+      {/* Full article content fetched and displayed */}
+      <FullArticleDisplay article={result} />
     </div>
   );
 };
