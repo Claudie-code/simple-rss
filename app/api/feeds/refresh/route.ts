@@ -36,13 +36,29 @@ export async function GET(req: Request) {
 
     const promises = feeds.map(async (oldFeed) => {
       const { id, url, correct_url, link } = oldFeed;
-      const { feed, error } = await getFeed(correct_url || url, link!);
+      const { feed, error, correctUrl } = await getFeed(
+        correct_url || url,
+        link!
+      );
 
       if (error || !feed) {
         return console.error(
           `[FEEDS_REFRESH] Error fetching feed for ${url}: `,
           error
         );
+      }
+
+      if (correctUrl) {
+        const { data: updatedFeedData, error: feedUpdateError } = await supabase
+          .from("feeds")
+          .update({ correct_url: correctUrl })
+          .eq("id", id)
+          .select("*")
+          .single();
+
+        if (feedUpdateError) {
+          console.error("Error updating feed", feedUpdateError);
+        }
       }
 
       const { error: errorUpsertArticles } = await upsertArticles(
