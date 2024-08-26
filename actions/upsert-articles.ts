@@ -15,7 +15,11 @@ export async function upsertArticles(feedId: number, feed: any) {
       content_snippet: item.contentSnippet ?? "",
       id_article: item.id ?? item.guid ?? "",
       iso_date: item.isoDate ?? "",
-      categories: item.categories ?? "",
+      categories: Array.isArray(item.categories)
+        ? item.categories
+        : typeof item.categories === "string"
+        ? item.categories.split(",").map((cat: string) => cat.trim())
+        : [],
     }));
 
     const { data: upsertedArticles, error: upsertItemsError } = await supabase
@@ -29,7 +33,7 @@ export async function upsertArticles(feedId: number, feed: any) {
       throw new Error("Error upserting articles");
     }
 
-    return upsertedArticles;
+    return { result: upsertedArticles };
   } catch (error) {
     console.error("CREATE_FEED", error);
     return { error: "Fail to upsert articles" };
