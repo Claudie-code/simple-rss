@@ -26,10 +26,10 @@ export async function upsertArticles(feedId: number, feed: any) {
       .from("articles")
       .upsert(items, { onConflict: "id_article" })
       .select();
-    console.log("upsertedArticles old feed", upsertedArticles);
+    console.log("upsertedArticles old feed", upsertItemsError);
 
     if (upsertItemsError) {
-      console.log("Error upserting articles", upsertItemsError);
+      console.error("Error upserting articles", upsertItemsError);
       throw new Error("Error upserting articles");
     }
 

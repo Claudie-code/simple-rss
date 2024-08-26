@@ -40,15 +40,19 @@ export async function GET(req: Request) {
       const { feed, error } = await getFeed(correct_url || url);
       console.log("feed old feed", feed);
       if (error || !feed) {
-        return console.log(
-          `[FEEDS_REFRESH] Error fetching feed for ${url}: ${error}`
+        return console.error(
+          `[FEEDS_REFRESH] Error fetching feed for ${url}: `,
+          error
         );
       }
 
-      const upsertError = await upsertArticles(oldFeed.id, feed);
-      if (upsertError) {
-        return console.log(
-          `[FEEDS_REFRESH] Error upserting articles for feed ${id}: ${upsertError}`
+      const { error: errorUpsertArticles } = await upsertArticles(
+        oldFeed.id,
+        feed
+      );
+      if (errorUpsertArticles) {
+        return console.error(
+          `[FEEDS_REFRESH] Error upserting articles for feed ${id}: ${errorUpsertArticles}`
         );
       }
     });
@@ -57,7 +61,7 @@ export async function GET(req: Request) {
 
     return new NextResponse("Feeds refreshed successfully", { status: 200 });
   } catch (error) {
-    console.log("[FEEDS_REFRESH]", error);
+    console.error("[FEEDS_REFRESH]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
