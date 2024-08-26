@@ -28,7 +28,7 @@ export default async function MyFeedsLayout({
 
   return (
     <>
-      <nav className="lg:pl-80 w-full flex justify-between border-b border-b-foreground/10 h-16 items-center p-3 lg:px-16 text-sm bg-background shadow-inner">
+      <nav className="lg:pl-80 w-full flex justify-between border-b border-b-foreground/10 h-16 items-center p-3 lg:px-16 text-sm bg-gray-50">
         <div className="flex">
           <MobileSidebar feeds={feeds} />
           <TitleFeed feeds={feeds} />

@@ -7,6 +7,10 @@ export async function POST(req: Request) {
     const user = await getRequiredAuthSession();
     const { url } = await req.json();
 
+    if (!url || typeof url !== "string") {
+      return new NextResponse("Invalid or missing URL", { status: 400 });
+    }
+
     const result = await createFeed({
       url,
       userId: user.id,

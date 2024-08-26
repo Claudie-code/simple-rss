@@ -39,8 +39,8 @@ const extractFeeds = (
 
   if (outline.$.type === "rss" && outline.$.xmlUrl) {
     feeds.push({
-      title: outline.$.title || outline.$.text,
-      url: outline.$.xmlUrl,
+      title: outline.$.title || outline.$.text || "",
+      url: outline.$.xmlUrl || "",
       link: outline.$.htmlUrl || "",
     });
   }

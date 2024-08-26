@@ -6,17 +6,35 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import BackButton from "@/components/back-button";
 import FullArticleDisplay from "./FullArticleDisplay";
-import { fetchFullContent } from "./action";
 import Link from "next/link";
 import { formatDate } from "@/utils/format/formatDate";
 import { Button } from "@/components/ui/button";
 import parse from "html-react-parser";
+import Parser from "@postlight/parser";
 
 type Props = {
   selectedArticle: Articles;
   userId: string;
   feedId: number;
 };
+
+async function fetchFullContent(articleLink: string) {
+  if (!articleLink) return { error: "No link" };
+  try {
+    // Attempt to parse the article
+    const result = await Parser.parse(articleLink);
+    return { result };
+  } catch (error) {
+    // Log the error for debugging purposes
+    console.error(`Failed to fetch full content from ${articleLink}:`, error);
+
+    // You can return a default error message or structure
+    return {
+      result: null,
+      error: `Failed to fetch content from the provided link. Please check the URL and try again.`,
+    };
+  }
+}
 
 export const ArticleView = async ({
   selectedArticle,
@@ -53,7 +71,7 @@ export const ArticleView = async ({
         console.log("Article ajouté aux favoris");
       }
     }
-    revalidatePath(`myfeeds/[feedId]/articles/[articleId]`);
+    revalidatePath(`myfeeds/[feedId]/articles/[articleId]`, "page");
   };
 
   const handleRemoveFromHistory = async (formData: FormData) => {
@@ -112,7 +130,12 @@ export const ArticleView = async ({
       </form>
       <h3 className="text-xl font-semibold">{selectedArticle?.title}</h3>
       <p className="mb-5 text-foreground/70">
-        {formatDate(selectedArticle.pub_date!)} by {selectedArticle.author}
+        {formatDate(selectedArticle.pub_date!)}{" "}
+        {selectedArticle.author
+          ? "by " + selectedArticle.author
+          : result?.author
+          ? "by " + result?.author
+          : ""}
       </p>
       {result ? (
         <FullArticleDisplay article={result} />

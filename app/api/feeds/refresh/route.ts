@@ -36,7 +36,9 @@ export async function GET(req: Request) {
 
     const promises = feeds.map(async (oldFeed) => {
       const { id, url, correct_url } = oldFeed;
+      console.log("id old feed", id);
       const { feed, error } = await getFeed(correct_url || url);
+      console.log("feed old feed", feed);
       if (error || !feed) {
         return console.log(
           `[FEEDS_REFRESH] Error fetching feed for ${url}: ${error}`

@@ -178,3 +178,13 @@
   margin: 20px auto; /* Centers the image and adds vertical space */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a soft shadow for depth */
 }
+
+.md-post iframe {
+  width: 100%; /* L'iframe occupe toute la largeur de son conteneur */
+  height: auto; /* Maintient le ratio d'aspect */
+  aspect-ratio: 16/9; /* Maintient un ratio d'aspect 16:9 */
+  display: block; /* Supprime tout espace en ligne autour de l'iframe */
+  border: none; /* Supprime les bordures par défaut de l'iframe */
+  border-radius: 8px; /* Ajoute des coins arrondis pour correspondre au style des autres éléments */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre douce pour créer une impression de profondeur */
+}

@@ -9,6 +9,15 @@ export async function importOPMLFeeds(opmlContent: string, userId: string) {
 
   for (const feed of feeds) {
     try {
+      if (!feed.url && !feed.link) {
+        console.log("Both feed URL and link are null or undefined", feed);
+        errors.push({
+          feed: feed.url,
+          error: "Both feed URL and link are null or undefined",
+        });
+        continue;
+      }
+
       const result = await createFeed({
         url: feed.url,
         userId: userId,
