@@ -53,11 +53,10 @@ export async function GET(req: Request) {
           .from("feeds")
           .update({ correct_url: correctUrl })
           .eq("id", id)
-          .select("*")
           .single();
 
         if (feedUpdateError) {
-          console.error("Error updating feed", feedUpdateError);
+          console.error("Error updating feed " + id, feedUpdateError);
         }
       }
 
