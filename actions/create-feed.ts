@@ -51,8 +51,7 @@ async function upsertFeed(
       const { data: updatedFeedData, error: feedUpdateError } = await supabase
         .from("feeds")
         .update({ correct_url: correctUrl })
-        .eq("id", existingFeed.id)
-        .single();
+        .eq("id", existingFeed.id);
 
       if (feedUpdateError) {
         console.log("Error updating feed", feedUpdateError);

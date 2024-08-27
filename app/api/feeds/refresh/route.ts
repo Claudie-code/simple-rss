@@ -48,12 +48,11 @@ export async function GET(req: Request) {
         );
       }
 
-      if (correctUrl) {
+      if (correctUrl && !correct_url) {
         const { data: updatedFeedData, error: feedUpdateError } = await supabase
           .from("feeds")
           .update({ correct_url: correctUrl })
-          .eq("id", id)
-          .single();
+          .eq("id", id);
 
         if (feedUpdateError) {
           console.error("Error updating feed " + id, feedUpdateError);
