@@ -55,7 +55,9 @@ export async function GET(req: Request) {
         const { data: updatedFeedData, error: feedUpdateError } = await supabase
           .from("feeds")
           .update({ correct_url: correctUrl })
-          .eq("id", id);
+          .eq("id", id)
+          .select()
+          .single();
         console.log("updatedFeedData", updatedFeedData);
 
         if (feedUpdateError) {
