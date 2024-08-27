@@ -56,6 +56,7 @@ export async function GET(req: Request) {
           .from("feeds")
           .update({ correct_url: correctUrl })
           .eq("id", id)
+          .order("id", { ascending: false })
           .limit(1)
           .select()
           .single();
