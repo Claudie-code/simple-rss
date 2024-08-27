@@ -52,7 +52,8 @@ async function upsertFeed(
         .from("feeds")
         .update({ correct_url: correctUrl })
         .eq("id", existingFeed.id)
-        .select();
+        .select()
+        .single();
 
       if (feedUpdateError) {
         console.log("Error updating feed", feedUpdateError);

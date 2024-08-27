@@ -49,15 +49,10 @@ export async function GET(req: Request) {
       }
 
       if (correctUrl && !correct_url) {
-        console.log("correctUrl", correctUrl);
-        console.log("id", id);
-
-        const { data: updatedFeedData, error: feedUpdateError } = await supabase
+        const { error: feedUpdateError } = await supabase
           .from("feeds")
           .update({ correct_url: correctUrl })
-          .eq("id", id)
-          .select();
-        console.log("updatedFeedData", updatedFeedData);
+          .eq("id", id);
 
         if (feedUpdateError) {
           console.error("Error updating feed " + id, feedUpdateError);
