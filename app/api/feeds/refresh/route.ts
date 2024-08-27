@@ -56,6 +56,7 @@ export async function GET(req: Request) {
           .from("feeds")
           .update({ correct_url: correctUrl })
           .eq("id", id)
+          .limit(1)
           .select()
           .single();
         console.log("updatedFeedData", updatedFeedData);

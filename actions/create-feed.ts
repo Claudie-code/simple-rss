@@ -52,6 +52,7 @@ async function upsertFeed(
         .from("feeds")
         .update({ correct_url: correctUrl })
         .eq("id", existingFeed.id)
+        .limit(1)
         .select()
         .single();
 
