@@ -21,7 +21,7 @@ export default async function Subscriptions({}: Props) {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">Manage Subscriptions</h2>
+      <h2 className="text-xl font-semibold mb-4">Manage Subscriptions</h2>
       <SubscriptionList subscriptions={subscriptions} />
     </div>
   );

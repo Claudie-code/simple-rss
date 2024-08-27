@@ -10,8 +10,10 @@ import { debounce } from "lodash";
 import { ArticlesViewUpsertHistory, fetchMoreArticles } from "./action";
 import toast from "react-hot-toast";
 
+type ArticlesWithFeedTitle = Articles & { feed_title?: string };
+
 type Props = {
-  items: Articles[];
+  items: ArticlesWithFeedTitle[];
   userId: string;
   functionFetchMore:
     | "getLastArticles"
@@ -132,6 +134,9 @@ export const ArticlesView = ({
                 );
               }}
             >
+              {article.feed_title ? (
+                <p className="text-sm text-gray-600">{article.feed_title}</p>
+              ) : null}
               <h3 className="font-semibold truncate">{article.title}</h3>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 {formatDate(article.pub_date ?? "")}
