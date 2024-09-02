@@ -20,7 +20,7 @@ export default function SettingsLayout({
       <div className="hidden md:flex h-full w-80 flex-col fixed inset-y-0 z-50">
         <SettingsSidebar />
       </div>
-      <main className="md:pl-80 h-full flex flex-col max-w-5xl">
+      <main className="md:pl-80 ml-6 h-full flex flex-col max-w-5xl">
         {children}
       </main>
     </>

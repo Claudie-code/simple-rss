@@ -19,5 +19,5 @@ export async function updateSubscription(
     throw new Error("Error updating subscription");
   }
 
-  revalidatePath("/settings/subscriptions");
+  revalidatePath("/settings/feeds");
 }

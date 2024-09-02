@@ -57,7 +57,7 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <Link
-                href="/settings/subscriptions"
+                href="/settings/subscription"
                 className="flex items-center justify-between w-full"
               >
                 <Settings className="mr-2 h-4 w-4" />

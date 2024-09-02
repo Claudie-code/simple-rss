@@ -45,7 +45,7 @@ export const ImportOPML = ({ userId }: { userId: string }) => {
             });
           } else {
             toast.success("Feeds imported successfully");
-            router.push(`/settings/subscriptions`);
+            router.push(`/settings/feeds`);
           }
         } catch (error) {
           console.error("Error importing feeds", error);

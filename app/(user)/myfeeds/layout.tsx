@@ -7,6 +7,8 @@ import { ReactNode } from "react";
 import { headers } from "next/headers";
 import TitleFeed from "./_components/TitleFeed";
 import { MobileSidebar } from "./_components/FeedsMobileSidebar";
+import { calculateDaysRemaining } from "@/utils/date";
+import toast from "react-hot-toast";
 
 export default async function MyFeedsLayout({
   children,
@@ -20,6 +22,23 @@ export default async function MyFeedsLayout({
 
   if (!user) {
     return redirect("/login");
+  }
+
+  // Fetch customer data
+  const { data: customer } = await supabase
+    .from("customers")
+    .select("has_access")
+    .eq("user_id", user.id)
+    .single();
+
+  const hasAccess = customer?.has_access;
+
+  // Calculate remaining trial days
+  const daysRemaining = calculateDaysRemaining(new Date(user.created_at), 30);
+
+  // Redirect if trial has ended and user doesn't have access
+  if (daysRemaining <= 0 && !hasAccess) {
+    return redirect("/settings/subscription");
   }
 
   const feeds = await getFeeds({

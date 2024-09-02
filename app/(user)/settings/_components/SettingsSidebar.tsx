@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, Rss } from "lucide-react";
+import { Download, Rss, DollarSign } from "lucide-react";
 import { Feeds } from "@/types/collection";
 import { SidebarItem } from "@/components/layout/SidebarItem";
 
@@ -16,14 +16,20 @@ export default function SettingsSidebar() {
       <SidebarItem
         setOpen={() => {}}
         icon={Rss}
-        label="Subscriptions"
-        href="/settings/subscriptions"
+        label="Manage Feeds"
+        href="/settings/feeds"
       />
       <SidebarItem
         setOpen={() => {}}
         icon={Download}
         label="Import/Export OPML"
         href="/settings/opml"
+      />
+      <SidebarItem
+        setOpen={() => {}}
+        icon={DollarSign}
+        label="Subscription"
+        href="/settings/subscription"
       />
     </div>
   );
