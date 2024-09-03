@@ -55,7 +55,7 @@ export default function Pricing({
   return (
     <div className="relative flex flex-col lg:flex-row items-center lg:items-stretch gap-8">
       <div className=" w-full max-w-md">
-        <div className="relative flex flex-col h-full gap-5 lg:gap-8 z-10 border bg-gray-50 p-8 rounded-xl">
+        <div className="relative flex flex-col h-full gap-5 lg:gap-8 z-10 border bg-slate-50 p-8 rounded-xl">
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-2">
               <Input

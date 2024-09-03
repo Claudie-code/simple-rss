@@ -4,6 +4,12 @@ export type Articles = Tables<"articles">;
 export type Feeds = Tables<"feeds">;
 export type Subscription = Tables<"subscriptions">;
 
+export type FeedsCount = {
+  id: number;
+  title: string;
+  unread_count: number;
+};
+
 export type FeedWithArticles = Feeds & {
   articles: Articles[];
 };

@@ -32,10 +32,10 @@ export default function Features() {
           } items-center justify-between max-w-3xl m-auto md:h-screen`}
         >
           <div className="p-6 w-full flex flex-col justify-center h-auto mt-0 md:w-[392px] lg:w-[360px]">
-            <h3 className="text-3xl font-semibold mb-4 text-gray-900">
+            <h3 className="text-3xl font-semibold mb-4 text-slate-900">
               {feature.title}
             </h3>
-            <p className="text-xl font-medium text-gray-400">
+            <p className="text-xl font-medium text-slate-400">
               {feature.description}
             </p>
           </div>

@@ -85,10 +85,10 @@ export default async function Login({
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 m-auto">
+    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 m-auto pb-20">
       <Link
         href="/"
-        className="absolute left-80 top-20 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+        className="xl:absolute xl:left-80 xl:top-20 py-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
       >
         <Button>
           <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
@@ -96,11 +96,11 @@ export default async function Login({
         </Button>
       </Link>
 
-      <div className="flex-1 flex flex-col justify-center gap-6 text-foreground pt-40">
+      <div className="flex-1 flex flex-col justify-center gap-6 text-foreground xl:pt-40">
         <form className="flex flex-col w-full">
           <SubmitButton
             formAction={signInWithGitHub}
-            className="flex justify-center items-center border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
+            className="flex justify-center items-center hover:bg-slate-50 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
             pendingText="Signing In..."
           >
             <svg
@@ -117,7 +117,7 @@ export default async function Login({
           </SubmitButton>
           <SubmitButton
             formAction={signInWithGoogle}
-            className="flex justify-center items-center border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
+            className="flex justify-center items-center hover:bg-slate-50 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
             pendingText="Signing In..."
           >
             <Image
@@ -147,7 +147,7 @@ export default async function Login({
 
           <SubmitButton
             formAction={signInWithEmail}
-            className="flex justify-center items-center border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
+            className="flex justify-center items-center hover:bg-slate-50 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
             pendingText="Signing In..."
           >
             <Mail className="mr-2" size={20} />

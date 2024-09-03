@@ -5,9 +5,9 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import MyfeedsSidebar from "./MyfeedsSidebar";
-import { Feeds } from "@/types/collection";
+import { FeedsCount } from "@/types/collection";
 
-export const MobileSidebar = ({ feeds }: { feeds: Feeds[] }) => {
+export const MobileSidebar = ({ feeds }: { feeds: FeedsCount[] }) => {
   const [open, setOpen] = useState(false);
 
   return (

@@ -7,7 +7,7 @@ import { SidebarItem } from "@/components/layout/SidebarItem";
 export default function SettingsSidebar() {
   return (
     <div
-      className="h-full flex flex-col overflow-y-auto bg-gray-50 shadow-sm "
+      className="h-full flex flex-col overflow-y-auto bg-slate-50 shadow-sm "
       style={{ boxShadow: "inset 0 2px 10px 0 rgb(0 0 0 / 0.15)" }}
     >
       <div className="p-6 pt-12">

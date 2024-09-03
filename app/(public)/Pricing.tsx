@@ -20,11 +20,11 @@ const Pricing = () => {
   const [plan, setPlan] = useState(plans[0]);
 
   return (
-    <section className="bg-gray-100 text-gray-900 py-16">
+    <section className="bg-slate-100 text-slate-900 py-16">
       <div className="mx-auto px-4">
         <h2 className="text-4xl text-center font-bold mb-12">Simple Pricing</h2>
         <div className="m-auto w-full max-w-md">
-          <div className="relative flex flex-col h-full gap-5 lg:gap-8 z-10 border bg-gray-50 p-8 rounded-xl">
+          <div className="relative flex flex-col h-full gap-5 lg:gap-8 z-10 border bg-slate-50 p-8 rounded-xl">
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-2">
                 <Input
@@ -61,7 +61,7 @@ const Pricing = () => {
               </div>
             </div>
 
-            <p className="text-md text-gray-700">
+            <p className="text-md text-slate-700">
               Get started with a 30-day free trial. <br />
               No credit card required to start.
             </p>

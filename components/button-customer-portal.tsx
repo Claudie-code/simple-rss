@@ -17,7 +17,7 @@ const ButtonCustomerPortal = ({ email, id }: { email: string; id: string }) => {
         "&client_reference_id=" +
         id
       }
-      className="btn"
+      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg py-2 px-4 rounded-lg w-full text-center"
     >
       Billing
     </Link>

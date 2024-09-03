@@ -23,7 +23,6 @@ export default async function Billing() {
 
   const hasAccess = customer?.has_access ?? false;
   const daysRemaining = calculateDaysRemaining(new Date(user.created_at), 30);
-  console.log("Rendering Billing");
 
   return (
     <div className="p-6">
@@ -37,7 +36,7 @@ export default async function Billing() {
         </p>
       ) : hasAccess ? (
         <>
-          <p className="mb-4">You have an active subscription.</p>
+          <p className="mb-6">You have an active subscription.</p>
           <ButtonCustomerPortal email={user.email!} id={user.id} />
         </>
       ) : (

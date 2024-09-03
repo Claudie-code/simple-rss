@@ -121,7 +121,7 @@ export const ArticlesView = ({
           .map((article) => (
             <Link
               key={article.id}
-              className="p-4 w-full cursor-pointer odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="p-4 w-full cursor-pointer odd:bg-white odd:dark:bg-slate-900 even:bg-slate-50 even:dark:bg-slate-800 border-b dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700"
               href={`/myfeeds/${article.feed_id}/articles/${article.id}`}
               style={{
                 opacity: article.is_in_history ? 0.5 : 1,
@@ -135,10 +135,10 @@ export const ArticlesView = ({
               }}
             >
               {article.feed_title ? (
-                <p className="text-sm text-gray-600">{article.feed_title}</p>
+                <p className="text-sm text-slate-600">{article.feed_title}</p>
               ) : null}
               <h3 className="font-semibold truncate">{article.title}</h3>
-              <p className="text-sm text-gray-700 dark:text-gray-300">
+              <p className="text-sm text-slate-700 dark:text-slate-300">
                 {formatDate(article.pub_date ?? "")}
               </p>
             </Link>
@@ -149,7 +149,7 @@ export const ArticlesView = ({
         </div>
       )}
       {!hasMoreArticles && (
-        <div className="flex h-full w-full items-center justify-center p-10 text-gray-500">
+        <div className="flex h-full w-full items-center justify-center p-10 text-slate-500">
           No more articles to load.
         </div>
       )}

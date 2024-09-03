@@ -4,7 +4,7 @@ import Pricing from "./Pricing";
 
 export default async function Index() {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-slate-100">
       <Hero />
       <Features />
       <Pricing />

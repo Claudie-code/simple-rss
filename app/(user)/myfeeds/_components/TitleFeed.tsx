@@ -1,9 +1,9 @@
 "use client";
 
-import { Feeds } from "@/types/collection";
+import { Feeds, FeedsCount } from "@/types/collection";
 import { usePathname } from "next/navigation";
 
-export default function TitleFeed({ feeds }: { feeds: Feeds[] }) {
+export default function TitleFeed({ feeds }: { feeds: FeedsCount[] }) {
   const pathname = usePathname();
   let title = "Latest Articles"; // Default title
 

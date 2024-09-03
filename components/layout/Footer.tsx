@@ -2,7 +2,7 @@ import { Separator } from "../ui/separator";
 
 export const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-900 pb-8">
+    <footer className="bg-slate-100 text-slate-900 pb-8">
       <Separator className="max-w-4xl m-auto mb-20" />
 
       <div className="max-w-5xl mx-auto px-4">
@@ -67,7 +67,7 @@ export const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="text-center text-sm text-gray-600 mt-8">
+        <div className="text-center text-sm text-slate-600 mt-8">
           <p>
             © {new Date().getFullYear()} Minimal RSS Reader. All rights
             reserved.

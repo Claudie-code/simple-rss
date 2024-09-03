@@ -3,12 +3,12 @@
 import { Rss } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SidebarItem } from "./MyfeedsSidebarItem";
-import { Feeds } from "@/types/collection";
+import { Feeds, FeedsCount } from "@/types/collection";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 interface SidebarItemProps {
-  feeds: Feeds[];
+  feeds: FeedsCount[];
 }
 
 export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
@@ -39,7 +39,7 @@ export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
       </div>
       <div
         className={cn(
-          "flex flex-col transition-all duration-300 overflow-hidden border-l border-gray-300 w-full",
+          "flex flex-col transition-all duration-300 overflow-hidden w-full mb-8",
           isFeedsOpen ? "max-h-screen" : "max-h-0"
         )}
       >
@@ -50,6 +50,7 @@ export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
               label={feed.title!}
               href={"/myfeeds/" + feed.id}
               isFeeds={true}
+              unreadCount={feed.unread_count}
             />
           );
         })}

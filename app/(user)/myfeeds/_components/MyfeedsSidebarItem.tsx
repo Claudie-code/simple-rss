@@ -12,6 +12,7 @@ interface SidebarItemProps {
   chevron?: boolean;
   isFeeds?: boolean;
   isFeedsOpen?: boolean;
+  unreadCount?: number;
 }
 
 export const SidebarItem = ({
@@ -21,6 +22,7 @@ export const SidebarItem = ({
   chevron,
   isFeeds,
   isFeedsOpen,
+  unreadCount,
 }: SidebarItemProps) => {
   const pathname = usePathname();
 
@@ -35,25 +37,35 @@ export const SidebarItem = ({
       href={href}
       type="button"
       className={cn(
-        "w-full flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20",
+        "w-full flex items-center gap-x-2 text-slate-600 text-sm font-[500] pl-6 transition-all hover:text-slate-700 hover:bg-slate-400/20",
         isActive &&
           "text-blue-700 bg-blue-200/20 hover:bg-blue-200/20 hover:text-blue-700",
-        isFeeds && "pl-12"
+        isFeeds && ""
       )}
     >
       <div className="flex items-center gap-x-2 py-4 grow overflow-hidden">
         {Icon && (
           <Icon
             size={22}
-            className={cn("text-slate-500", isActive && "text-blue-700")}
+            className={cn("text-slate-600", isActive && "text-blue-700")}
           />
         )}
-        <span className="truncate text-ellipsis whitespace-nowrap">
+        <span
+          className={cn(
+            "truncate text-ellipsis whitespace-nowrap",
+            isFeeds && "font-normal"
+          )}
+        >
           {label}
         </span>
       </div>
       {chevron &&
         (isFeedsOpen || isArticlePath ? <ChevronUp /> : <ChevronDown />)}
+      {unreadCount && (
+        <span className="font-semibold p-1 px-2 bg-slate-200 rounded-full text-xs">
+          {unreadCount}
+        </span>
+      )}
       <div
         className={cn(
           "ml-auto opacity-0 border-2 border-blue-700 h-full transition-all",
