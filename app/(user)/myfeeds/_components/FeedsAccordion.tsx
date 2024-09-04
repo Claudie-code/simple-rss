@@ -6,6 +6,7 @@ import { SidebarItem } from "./MyfeedsSidebarItem";
 import { Feeds, FeedsCount } from "@/types/collection";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
 
 interface SidebarItemProps {
   feeds: FeedsCount[];
@@ -28,6 +29,7 @@ export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
 
   return (
     <>
+      <Separator className="my-6 w-72 mx-auto" />
       <div onClick={() => setIsFeedsOpen(!isFeedsOpen)} className="flex">
         <SidebarItem
           icon={Rss}

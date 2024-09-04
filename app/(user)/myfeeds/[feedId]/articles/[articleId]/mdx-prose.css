@@ -37,7 +37,7 @@
 }
 
 .md-post {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .md-post li input[type="checkbox"]:checked + * {
@@ -75,15 +75,6 @@
 
 .md-post a {
   color: #007bff;
-  text-decoration: none;
-  padding: 2px 4px; /* Espace interne pour éviter que le fond touche le texte */
-  border-radius: 4px; /* Angles arrondis */
-  transition: background-color 0.2s ease, color 0.2s ease; /* Transition douce */
-}
-
-.md-post a:hover {
-  background-color: #007bff;
-  color: #fff; /* Couleur du texte blanche au survol */
 }
 
 .md-post :not(pre) > code {
