@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <section className="text-slate-900 py-24 pb-64 flex items-center justify-center">
+    <section className="text-slate-900 py-28 pb-60 flex items-center justify-center">
       <div className="text-center max-w-3xl mx-auto px-4">
         <h1 className="text-5xl font-bold mb-4">Your Minimalist RSS Reader</h1>
         <p className="text-xl mb-4">

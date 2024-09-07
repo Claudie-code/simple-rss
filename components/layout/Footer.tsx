@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className="bg-slate-100 text-slate-900 pb-8">
       <Separator className="max-w-4xl m-auto mb-20" />
 
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo or Brand Name */}
           <div className="mb-4 md:mb-0">
@@ -16,17 +16,20 @@ export const Footer = () => {
           <div className="mb-4 md:mb-0">
             <ul className="flex space-x-6">
               <li>
-                <a href="#features" className="hover:text-blue-600">
-                  Features
+                <a href="/tos" className="hover:text-blue-600">
+                  Terms of service
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-blue-600">
-                  Pricing
+                <a href="/privacy-policy" className="hover:text-blue-600">
+                  Privacy
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-blue-600">
+                <a
+                  href="mailto:support@simple-rss.com"
+                  className="hover:text-blue-600"
+                >
                   Contact
                 </a>
               </li>
