@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { ArticleView } from "./ArticleView";
 import { getArticle } from "@/actions/get-article";
 import BackButton from "@/components/back-button";
+import { getFeed } from "@/utils/feed";
 
 export default async function Article({
   params,

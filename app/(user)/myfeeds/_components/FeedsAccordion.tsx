@@ -53,6 +53,7 @@ export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
               href={"/myfeeds/" + feed.id}
               isFeeds={true}
               unreadCount={feed.unread_count}
+              image={feed.image_url}
             />
           );
         })}

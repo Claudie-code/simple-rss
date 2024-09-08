@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 interface SidebarItemProps {
   label: string;
@@ -13,6 +14,7 @@ interface SidebarItemProps {
   isFeeds?: boolean;
   isFeedsOpen?: boolean;
   unreadCount?: number;
+  image?: string;
 }
 
 export const SidebarItem = ({
@@ -23,6 +25,7 @@ export const SidebarItem = ({
   isFeeds,
   isFeedsOpen,
   unreadCount,
+  image,
 }: SidebarItemProps) => {
   const pathname = usePathname();
 
@@ -56,6 +59,7 @@ export const SidebarItem = ({
             isFeeds && "font-normal"
           )}
         >
+          <Image src={image!} alt={"favicon " + label} />
           {label}
         </span>
       </div>

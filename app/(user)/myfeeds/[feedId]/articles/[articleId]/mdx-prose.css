@@ -179,3 +179,12 @@
   border-radius: 8px; /* Ajoute des coins arrondis pour correspondre au style des autres éléments */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre douce pour créer une impression de profondeur */
 }
+
+table {
+  text-align: left;
+}
+
+td,
+th {
+  padding: 0.5rem;
+}

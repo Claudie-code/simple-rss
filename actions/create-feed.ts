@@ -34,6 +34,9 @@ async function upsertFeed(
         link: feed.link,
         title: feed.title,
         url,
+        image_url: feed.image.url,
+        language: feed.language,
+        description: feed.description,
         correct_url: correctUrl || null, // Insert correct_url if available
       })
       .select("*")

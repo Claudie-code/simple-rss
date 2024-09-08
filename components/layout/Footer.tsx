@@ -71,10 +71,7 @@ export const Footer = () => {
 
         {/* Footer Bottom */}
         <div className="text-center text-sm text-slate-600 mt-8">
-          <p>
-            © {new Date().getFullYear()} Minimal RSS Reader. All rights
-            reserved.
-          </p>
+          <p>© {new Date().getFullYear()} SimpleRSS. All rights reserved.</p>
         </div>
       </div>
     </footer>

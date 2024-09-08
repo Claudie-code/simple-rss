@@ -1,5 +1,7 @@
 import Link from "next/link";
 import AuthButton from "../auth/AuthButton";
+import { Logo } from "./Logo";
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -7,8 +9,15 @@ export default function Header() {
       <div className="w-full max-w-4xl flex justify-between items-center py-7 text-sm">
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tight text-slate-700"
+          className="flex  space-x-2 items-center text-2xl font-bold tracking-tight text-slate-700"
         >
+          <Image
+            className="rounded-full"
+            height={40}
+            width={40}
+            alt="logo"
+            src="/logo.svg"
+          />
           <span className="">SimpleRSS</span>
         </Link>
 
