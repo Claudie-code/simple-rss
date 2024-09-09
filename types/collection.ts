@@ -8,6 +8,7 @@ export type FeedsCount = {
   id: number;
   title: string;
   unread_count: number;
+  image_url?: string;
 };
 
 export type FeedWithArticles = Feeds & {

@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { getFeed } from "@/utils/feed";
 import { upsertArticles } from "./upsert-articles";
+import { fetchFavicon } from "@/utils/favicon";
 
 interface Feed {
   link: string;
@@ -28,13 +29,15 @@ async function upsertFeed(
 
   let feedData: Feed;
   if (!existingFeed) {
+    const faviconURL = await fetchFavicon(feed.link);
+
     const { data: newFeedData, error: feedInsertError } = await supabase
       .from("feeds")
       .insert({
         link: feed.link,
         title: feed.title,
         url,
-        image_url: feed.image.url,
+        image_url: faviconURL,
         language: feed.language,
         description: feed.description,
         correct_url: correctUrl || null, // Insert correct_url if available

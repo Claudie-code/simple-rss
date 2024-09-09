@@ -4,6 +4,7 @@ import { ArticleView } from "./ArticleView";
 import { getArticle } from "@/actions/get-article";
 import BackButton from "@/components/back-button";
 import { getFeed } from "@/utils/feed";
+import { fetchFavicon } from "@/utils/favicon";
 
 export default async function Article({
   params,

@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo or Brand Name */}
           <div className="mb-4 md:mb-0">
-            <h2 className="text-2xl font-semibold">RSS</h2>
+            <h2 className="text-2xl font-semibold">SimpleRSS</h2>
           </div>
 
           {/* Navigation Links */}

@@ -73,7 +73,7 @@ export const ArticlesView = ({
   }, []);
 
   useEffect(() => {
-    if (isInView && !isLoading && hasMoreArticles) {
+    if (isInView && !isLoading && hasMoreArticles && !isPending) {
       loadMoreArticles();
     }
   }, [isInView, hasMoreArticles]);

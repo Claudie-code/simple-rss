@@ -47,6 +47,7 @@ const AddFeedForm = () => {
       const response = await axios.post("/api/feeds", values);
       toast.success("Feed created");
       form.reset();
+      router.refresh();
     } catch (error) {
       toast.error("Feed URL is invalid or unreachable.");
     }

@@ -85,10 +85,10 @@ export default async function Login({
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 m-auto pb-20">
+    <div className="flex-1 flex flex-col w-full p-4 sm:max-w-md justify-center gap-2 m-auto py-20">
       <Link
         href="/"
-        className="xl:absolute xl:left-80 xl:top-20 py-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+        className="py-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
       >
         <Button>
           <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
@@ -96,7 +96,7 @@ export default async function Login({
         </Button>
       </Link>
 
-      <div className="flex-1 flex flex-col justify-center gap-6 text-foreground xl:pt-40">
+      <div className="flex-1 flex flex-col justify-center gap-6 text-foreground">
         <form className="flex flex-col w-full">
           <SubmitButton
             formAction={signInWithGitHub}

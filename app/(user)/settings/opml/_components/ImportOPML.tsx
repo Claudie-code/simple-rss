@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { importOPMLFeeds } from "../actions";
 import { useRouter } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
 
 export const ImportOPML = ({ userId }: { userId: string }) => {
   const router = useRouter();

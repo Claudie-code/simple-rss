@@ -45,23 +45,35 @@ export const SidebarItem = ({
           "text-blue-700 bg-blue-200/20 hover:bg-blue-200/20 hover:text-blue-700",
         isFeeds && ""
       )}
+      title={label}
     >
-      <div className="flex items-center gap-x-2 py-4 grow overflow-hidden">
+      <div className="flex items-center gap-x-2 py-3 grow overflow-hidden">
         {Icon && (
           <Icon
             size={22}
             className={cn("text-slate-600", isActive && "text-blue-700")}
           />
         )}
-        <span
-          className={cn(
-            "truncate text-ellipsis whitespace-nowrap",
-            isFeeds && "font-normal"
+        <div className="flex items-center">
+          {isFeeds && image && (
+            <img
+              src={image}
+              alt={"favicon " + label}
+              width={25}
+              height={25}
+              className="mr-1 h-4 w-4"
+            />
           )}
-        >
-          <Image src={image!} alt={"favicon " + label} />
-          {label}
-        </span>
+          {isFeeds && !image && <div className="h-4 w-4 mr-1 bg-white"></div>}
+          <span
+            className={cn(
+              "truncate text-ellipsis whitespace-nowrap",
+              isFeeds && "font-normal"
+            )}
+          >
+            {label}
+          </span>
+        </div>
       </div>
       {chevron &&
         (isFeedsOpen || isArticlePath ? <ChevronUp /> : <ChevronDown />)}

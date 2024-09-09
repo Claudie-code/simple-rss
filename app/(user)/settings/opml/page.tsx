@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { SubscriptionWithFeed } from "@/types/collection";
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
+import { Separator } from "@/components/ui/separator";
 
 type Props = {};
 
@@ -30,6 +31,8 @@ async function OPMLPage({}: Props) {
       <div className="mb-6">
         <ImportOPML userId={user.id} />
       </div>
+      <Separator className="max-w-lg my-4" />
+
       <div className="mb-6">
         {subscriptions ? (
           <Suspense fallback={<Button disabled={true}>Loading...</Button>}>

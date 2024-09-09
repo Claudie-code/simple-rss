@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <nav className="w-full flex justify-center bg-slate-100">
-      <div className="w-full max-w-4xl flex justify-between items-center py-7 text-sm">
+    <nav className="w-full flex justify-center bg-slate-100 p-4">
+      <div className="w-full max-w-4xl flex justify-between items-center py-2 text-sm">
         <Link
           href="/"
           className="flex  space-x-2 items-center text-2xl font-bold tracking-tight text-slate-700"

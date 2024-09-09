@@ -52,44 +52,36 @@ export async function getFeed(
   url: string,
   link?: string
 ): Promise<GetFeedResult> {
-  // Try fetching the feed directly from the URL
+  // Essayer de parser l'URL principale
   let { feed, error } = await fetchAndParseFeed(url);
+  if (feed) return { feed, correctUrl: null };
 
-  if (feed) {
-    return { feed, correctUrl: null };
-  }
-
-  // Try to find RSS feed using rss-finder for the URL
-  const { feedUrl: rssFeedUrl, error: findError } = await findRssFeed(url);
-  if (rssFeedUrl) {
-    ({ feed, error } = await fetchAndParseFeed(rssFeedUrl));
-    if (feed) {
-      return { feed, correctUrl: rssFeedUrl };
-    }
-  }
-
-  // If still no feed found, try the link if provided
+  // Essayer de parser le `link` si fourni
   if (link) {
     ({ feed, error } = await fetchAndParseFeed(link));
+    if (feed) return { feed, correctUrl: null };
+  }
 
-    if (feed) {
-      return { feed, correctUrl: null };
-    }
+  // Si aucune des deux URL n'a fonctionné, essayer de trouver un flux RSS via rssFinder pour `url`
+  let rssFeedUrl: string | undefined;
+  ({ feedUrl: rssFeedUrl, error } = await findRssFeed(url));
+  if (rssFeedUrl) {
+    ({ feed, error } = await fetchAndParseFeed(rssFeedUrl));
+    if (feed) return { feed, correctUrl: rssFeedUrl };
+  }
 
-    const { feedUrl: rssFeedUrlFromLink, error: findErrorFromLink } =
-      await findRssFeed(link);
+  // Si l'URL principale n'a pas fonctionné, essayer rssFinder sur `link`
+  if (link) {
+    let rssFeedUrlFromLink: string | undefined;
+    ({ feedUrl: rssFeedUrlFromLink, error } = await findRssFeed(link));
     if (rssFeedUrlFromLink) {
       ({ feed, error } = await fetchAndParseFeed(rssFeedUrlFromLink));
-      if (feed) {
-        return { feed, correctUrl: rssFeedUrlFromLink };
-      }
+      if (feed) return { feed, correctUrl: rssFeedUrlFromLink };
     }
   }
 
-  console.error(
-    `Error fetching feed from ${url} (or ${link}):`,
-    error || findError
-  );
+  // Si rien n'a fonctionné, renvoyer une erreur
+  console.error(`Error fetching feed from ${url} (or ${link}):`, error);
   return {
     error: `Feed URL ${url} (or ${link}) is invalid or unreachable.`,
   };

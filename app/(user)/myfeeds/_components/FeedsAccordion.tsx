@@ -29,7 +29,7 @@ export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
 
   return (
     <>
-      <Separator className="my-6 w-72 mx-auto" />
+      <Separator className="my-4 w-72 mx-auto" />
       <div onClick={() => setIsFeedsOpen(!isFeedsOpen)} className="flex">
         <SidebarItem
           icon={Rss}

@@ -182,9 +182,12 @@
 
 table {
   text-align: left;
+  overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
+  max-width: 100%;
 }
 
 td,
 th {
   padding: 0.5rem;
+  word-break: break-word;
 }

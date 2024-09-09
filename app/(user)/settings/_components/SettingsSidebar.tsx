@@ -2,7 +2,7 @@
 
 import { Download, Rss, DollarSign } from "lucide-react";
 import { Feeds } from "@/types/collection";
-import { SidebarItem } from "@/components/layout/SidebarItem";
+import { SidebarItem } from "./SidebarItem";
 
 export default function SettingsSidebar() {
   return (
