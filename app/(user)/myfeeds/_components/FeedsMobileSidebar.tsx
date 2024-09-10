@@ -2,9 +2,14 @@
 
 import { Menu } from "lucide-react";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { useState } from "react";
-import MyfeedsSidebar from "./MyfeedsSidebar";
+import MyfeedsSidebar from "./Sidebar";
 import { FeedsCount } from "@/types/collection";
 
 export const MobileSidebar = ({ feeds }: { feeds: FeedsCount[] }) => {

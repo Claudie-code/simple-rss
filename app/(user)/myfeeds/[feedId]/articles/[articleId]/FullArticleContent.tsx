@@ -9,7 +9,7 @@ type articleDisplayProps = {
 };
 
 const FullArticleContent = async ({ article }: articleDisplayProps) => {
-  const { result, error } = await fetchFullContent(article?.link!);
+  const { result, error } = await fetchFullContent(article.link!);
 
   return (
     result && (

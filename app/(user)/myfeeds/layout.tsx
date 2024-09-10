@@ -2,13 +2,11 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { getFeeds } from "@/actions/get-feeds";
 import AuthButton from "@/components/auth/AuthButton";
-import MyfeedsSidebar from "./_components/MyfeedsSidebar";
 import { ReactNode } from "react";
-import { headers } from "next/headers";
 import TitleFeed from "./_components/TitleFeed";
 import { MobileSidebar } from "./_components/FeedsMobileSidebar";
 import { calculateDaysRemaining } from "@/utils/date";
-import toast from "react-hot-toast";
+import { MyfeedsSidebar } from "./_components/MyfeedsSidebar";
 
 export default async function MyFeedsLayout({
   children,
@@ -47,16 +45,16 @@ export default async function MyFeedsLayout({
 
   return (
     <>
-      <nav className="lg:pl-80 w-full flex justify-between border-b border-b-foreground/10 h-16 items-center p-3 lg:px-16 text-sm bg-slate-50">
-        <div className="flex">
+      <nav className="lg:pl-80 w-full flex justify-between border-b border-b-foreground/10 h-16 items-center p-3 lg:px-5 text-sm bg-slate-50">
+        <div className="flex items-center truncate mr-2">
           <MobileSidebar feeds={feeds} />
           <TitleFeed feeds={feeds} />
         </div>
-        <AuthButton />
+        <div className="flex-shrink-0">
+          <AuthButton />
+        </div>
       </nav>
-      <div className="hidden lg:flex h-full w-80 flex-col fixed inset-y-0 z-50">
-        <MyfeedsSidebar feeds={feeds} />
-      </div>
+      <MyfeedsSidebar feeds={feeds} />
       <main className="lg:pl-80 h-full flex flex-col">{children}</main>
     </>
   );

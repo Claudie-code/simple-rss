@@ -2,7 +2,7 @@
 
 import { Rss } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SidebarItem } from "./MyfeedsSidebarItem";
+import { SidebarItem } from "./SidebarItem";
 import { Feeds, FeedsCount } from "@/types/collection";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -10,9 +10,10 @@ import { Separator } from "@/components/ui/separator";
 
 interface SidebarItemProps {
   feeds: FeedsCount[];
+  setOpen: Function;
 }
 
-export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
+export const FeedsAccordion = ({ feeds, setOpen }: SidebarItemProps) => {
   const pathname = usePathname();
   const isArticlePath = !!pathname.match(/^\/myfeeds\/\d+\/articles\/\d+$/);
   const isFeedPath = !!pathname.match(/^\/myfeeds\/\d+$/);
@@ -44,6 +45,7 @@ export const FeedsAccordion = ({ feeds }: SidebarItemProps) => {
           "flex flex-col transition-all duration-300 overflow-hidden w-full mb-8",
           isFeedsOpen ? "max-h-screen" : "max-h-0"
         )}
+        onClick={() => setOpen(false)}
       >
         {feeds.map((feed) => {
           return (
