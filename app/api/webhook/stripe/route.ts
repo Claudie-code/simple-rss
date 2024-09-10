@@ -53,21 +53,25 @@ export async function POST(req: Request) {
               .single();
 
             if (!existingCustomer) {
-              // Insert new customer if not found
-              const { data: newCustomer, error: insertError } = await supabase
-                .from("customers")
-                .insert({
-                  user_id: userId,
-                  email: customer.email,
-                  name: customer.name,
-                  customer_id: customerId,
-                  has_access: true, // Grant access upon successful subscription
-                })
-                .select("*")
-                .single();
+              // Vérifie que l'objet customer est un Customer et non un DeletedCustomer
+              if (!customer.deleted) {
+                const { data: newCustomer, error: insertError } = await supabase
+                  .from("customers")
+                  .insert({
+                    user_id: userId,
+                    email: customer.email || "", // TypeScript est maintenant satisfait
+                    name: customer.name,
+                    customer_id: customerId,
+                    has_access: true, // Grant access upon successful subscription
+                  })
+                  .select("*")
+                  .single();
 
-              if (insertError) throw insertError;
-            } 
+                if (insertError) throw insertError;
+              } else {
+                throw new Error("Customer is deleted");
+              }
+            }
           } else {
             throw new Error("User ID not found in session");
           }
