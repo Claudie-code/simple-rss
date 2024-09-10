@@ -19,6 +19,7 @@
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "@tanstack/react-query": "^5.51.11",
+    "aos": "^2.3.4",
     "autoprefixer": "10.4.17",
     "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
@@ -47,6 +48,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.7",
     "@types/lodash": "^4.17.7",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",

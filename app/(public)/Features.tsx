@@ -7,7 +7,7 @@ export default function Features() {
       description:
         "Quickly add feeds and access articles with minimal distractions. Focus on what really matters: the content.",
       reverse: true,
-      image: "",
+      image: "/fullarticle1.png",
       altImage: "",
     },
     {
@@ -15,7 +15,7 @@ export default function Features() {
       description:
         "Enjoy a distraction-free experience without tracking or ads. Your feeds are private and under your control.",
       reverse: false,
-      image: "",
+      image: "/fullarticle1.png",
       altImage: "",
     },
     {
@@ -46,7 +46,10 @@ export default function Features() {
             feature.reverse ? "xl:flex-row-reverse" : "xl:flex-row"
           } items-center xl:justify-center gap-16 m-auto md:h-screen`}
         >
-          <div className="p-6 w-full flex flex-col justify-center h-auto mt-0 md:w-[392px] lg:w-[360px]">
+          <div
+            className="p-6 w-full flex flex-col justify-center h-auto mt-0 md:w-[392px] lg:w-[360px]"
+            data-aos="fade-down"
+          >
             <h3 className="text-3xl font-semibold mb-4 text-slate-900">
               {feature.title}
             </h3>
@@ -54,7 +57,7 @@ export default function Features() {
               {feature.description}
             </p>
           </div>
-          <div className="max-w-xs">
+          <div className="max-w-xs" data-aos="fade-up">
             <Image
               src={feature.image}
               alt={feature.altImage}

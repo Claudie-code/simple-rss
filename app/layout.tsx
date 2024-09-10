@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Providers } from "./Providers";
+import { AOSInit } from "./AOSinit";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -24,6 +25,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={GeistSans.className}>
+      <AOSInit />
+
       <body className="bg-background text-foreground">
         <Providers>
           <main className="">{children}</main>
