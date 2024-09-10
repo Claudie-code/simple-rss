@@ -133,7 +133,7 @@ export default async function Login({
             Sign In with Google
           </SubmitButton>
         </form>
-        <Separator />
+        {/* <Separator />
         <form className="flex flex-col w-full">
           <label className="text-md" htmlFor="email">
             Email
@@ -153,7 +153,7 @@ export default async function Login({
             <Mail className="mr-2" size={20} />
             Sign In with Email
           </SubmitButton>
-        </form>
+        </form> */}
 
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
