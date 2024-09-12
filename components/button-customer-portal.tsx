@@ -5,7 +5,7 @@ import Link from "next/link";
 
 // Customer portal link
 const customerPortalLink =
-  "https://billing.stripe.com/p/login/test_aEU3ga3Zg6db4pO3cc";
+  "https://billing.stripe.com/p/login/00g8xQaC3bXSdO0aEE";
 
 const ButtonCustomerPortal = ({ email, id }: { email: string; id: string }) => {
   return (
