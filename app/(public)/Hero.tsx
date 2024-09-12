@@ -16,7 +16,7 @@ const HeroSection = () => {
           </button>
         </Link>
         <p className="text-md mt-2 text-slate-700">
-          Enjoy a 30-day free trial, then continue for just €3/month.
+          Enjoy a 30-day free trial, then continue for just $3/month.
           <br></br>
           Cancel anytime.
         </p>
