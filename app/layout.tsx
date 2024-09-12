@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Providers } from "./Providers";
 import { AOSInit } from "./AOSinit";
+import Analytics from "./Analytics";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Providers>
           <main className="">{children}</main>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
