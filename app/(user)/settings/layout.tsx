@@ -1,6 +1,6 @@
-import SettingsSidebar from "./_components/SettingsSidebar";
 import AuthButton from "@/components/auth/AuthButton";
 import { Sidebar } from "./_components/Sidebar";
+import { MobileSidebar } from "./_components/MobileSidebar";
 
 type Props = {};
 
@@ -12,7 +12,7 @@ export default function SettingsLayout({
   return (
     <>
       <nav className="md:pl-80 w-full flex justify-between border-b border-b-foreground/10 h-16 items-center px-16 text-sm">
-        <div></div>
+        <MobileSidebar />
         <AuthButton />
       </nav>
       <Sidebar />
