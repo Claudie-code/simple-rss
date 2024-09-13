@@ -1,5 +1,6 @@
 import SettingsSidebar from "./_components/SettingsSidebar";
 import AuthButton from "@/components/auth/AuthButton";
+import { Sidebar } from "./_components/Sidebar";
 
 type Props = {};
 
@@ -14,10 +15,8 @@ export default function SettingsLayout({
         <div></div>
         <AuthButton />
       </nav>
-      <div className="hidden md:flex h-full w-80 flex-col fixed inset-y-0 z-50">
-        <SettingsSidebar />
-      </div>
-      <main className="md:pl-80 ml-6 h-full flex flex-col max-w-5xl">
+      <Sidebar />
+      <main className="md:pl-80 md:ml-6 h-full flex flex-col max-w-5xl">
         {children}
       </main>
     </>

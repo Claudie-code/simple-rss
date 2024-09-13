@@ -4,7 +4,7 @@ import { Download, Rss, DollarSign } from "lucide-react";
 import { Feeds } from "@/types/collection";
 import { SidebarItem } from "./SidebarItem";
 
-export default function SettingsSidebar() {
+export default function SettingsSidebar({ setOpen }: { setOpen: Function }) {
   return (
     <div
       className="h-full flex flex-col overflow-y-auto bg-slate-50 shadow-sm "
@@ -14,19 +14,19 @@ export default function SettingsSidebar() {
         <h1 className="font-semibold text-2xl">Settings</h1>
       </div>
       <SidebarItem
-        setOpen={() => {}}
+        setOpen={setOpen}
         icon={Rss}
         label="Manage Feeds"
         href="/settings/feeds"
       />
       <SidebarItem
-        setOpen={() => {}}
+        setOpen={setOpen}
         icon={Download}
         label="Import/Export OPML"
         href="/settings/opml"
       />
       <SidebarItem
-        setOpen={() => {}}
+        setOpen={setOpen}
         icon={DollarSign}
         label="Subscription"
         href="/settings/subscription"

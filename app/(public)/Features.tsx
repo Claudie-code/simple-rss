@@ -44,7 +44,7 @@ export default function Features() {
           key={index}
           className={`flex flex-col ${
             feature.reverse ? "xl:flex-row-reverse" : "xl:flex-row"
-          } items-center xl:justify-center gap-16 m-auto md:h-screen`}
+          } items-center xl:justify-center md:gap-16 pt-6 m-auto md:h-screen`}
         >
           <div
             className="p-6 w-full flex flex-col justify-center h-auto mt-0 md:w-[392px] lg:w-[360px]"
