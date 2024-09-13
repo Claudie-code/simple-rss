@@ -25,12 +25,13 @@ export default async function Billing() {
   const daysRemaining = calculateDaysRemaining(new Date(user.created_at), 30);
 
   return (
-    <div className="p-6">
+    <div className="p-4 py-6">
       <h2 className="text-xl font-semibold mb-4">Subscription</h2>
 
       {daysRemaining > 0 ? (
         <p className="mb-4">
-          You have {daysRemaining} days remaining in your free trial.
+          You have <span className="font-semibold">{daysRemaining} days</span>{" "}
+          remaining in your free trial.
           <br />
           Subscription options will be available after your trial period ends.
         </p>

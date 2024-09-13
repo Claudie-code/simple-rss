@@ -26,7 +26,7 @@ async function OPMLPage({}: Props) {
   });
 
   return (
-    <div className="p-6">
+    <div className="p-4 py-6">
       <h1 className="text-xl font-semibold mb-4">Import/Export OPML</h1>
       <div className="mb-6">
         <ImportOPML userId={user.id} />

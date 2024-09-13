@@ -11,8 +11,10 @@ export default function SettingsLayout({
 }) {
   return (
     <>
-      <nav className="md:pl-80 w-full flex justify-between border-b border-b-foreground/10 h-16 items-center px-16 text-sm">
-        <MobileSidebar />
+      <nav className="md:pl-80 w-full flex justify-between border-b border-b-foreground/10 h-16 items-center px-4 md:px-16 text-sm">
+        <div>
+          <MobileSidebar />
+        </div>
         <AuthButton />
       </nav>
       <Sidebar />
