@@ -49,7 +49,9 @@ const AddFeedForm = () => {
       form.reset();
       router.refresh();
     } catch (error) {
-      toast.error("Feed URL is invalid or unreachable.");
+      toast.error(
+        "Feed URL is invalid. If it doesn't work, try adding '.rss' or using a different URL."
+      );
     }
   };
 
@@ -68,10 +70,12 @@ const AddFeedForm = () => {
                   disabled={isSubmitting}
                   placeholder="Add feed URL"
                   {...field}
+                  autoFocus={false}
                 />
               </FormControl>
               {/* <FormDescription>
-                What will you teach in this course?
+                If you're unable to access the feed, try adding '.rss' to the
+                URL.
               </FormDescription> */}
               <FormMessage />
             </FormItem>

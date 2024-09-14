@@ -19,7 +19,7 @@ export default async function MyFeeds() {
   }
   const lastArticles = await getLastArticles({ userId: user.id });
 
-  if (lastArticles.length === 0) {
+  if (lastArticles.length === 1) {
     return (
       <div className="flex flex-col items-center py-20 min-h-screen">
         <div className="max-w-2xl w-full bg-white rounded-lg p-6">
