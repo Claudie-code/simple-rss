@@ -25,6 +25,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "geist": "^1.2.1",
+    "highlight.js": "^11.10.0",
     "html-react-parser": "^5.1.12",
     "lodash": "^4.17.21",
     "lucide-react": "^0.408.0",

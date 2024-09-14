@@ -153,6 +153,7 @@
 
 .md-post pre {
   border-radius: 6px;
+  overflow: auto;
 }
 
 .md-post time {

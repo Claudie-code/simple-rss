@@ -14,7 +14,7 @@ export const SubscriptionList = ({ subscriptions }: SubscriptionListProps) => {
         <SubscriptionItem key={subscription.id} subscription={subscription} />
       ))}
       {subscriptions.length === 0 && (
-        <div className="text-center text-sm text-muted-foreground mt-10">
+        <div className="text-sm text-muted-foreground mt-10">
           No subscriptions.
         </div>
       )}

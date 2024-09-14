@@ -96,8 +96,46 @@ export default async function Login({
         </Button>
       </Link>
 
-      <div className="flex-1 flex flex-col justify-center gap-6 text-foreground">
-        <form className="flex flex-col w-full">
+      <div className="flex-1 flex flex-col justify-center gap-2 text-foreground">
+        <h1 className="text-2xl font-semibold tracking-tight text-center">
+          Create an account
+        </h1>
+        {/* <p className="text-sm text-muted-foreground text-center">
+          Enter your email below to create your account
+        </p>
+        <form className="flex flex-col w-full py-6">
+          <label className="text-md" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="rounded-md px-4 py-2 bg-inherit border mb-2"
+            name="email"
+            placeholder="you@example.com"
+            // required
+          />
+
+          <SubmitButton
+            formAction={signInWithEmail}
+            className="flex justify-center items-center hover:bg-slate-50 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
+            pendingText="Signing In..."
+          >
+            <Mail className="mr-2" size={20} />
+            Sign In with Email
+          </SubmitButton>
+        </form>
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t"></span>
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">
+              Or continue with
+            </span>
+          </div>
+        </div> */}
+
+        <form className="flex flex-col w-full mt-6">
           <SubmitButton
             formAction={signInWithGitHub}
             className="flex justify-center items-center hover:bg-slate-50 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
@@ -133,27 +171,6 @@ export default async function Login({
             Sign In with Google
           </SubmitButton>
         </form>
-        {/* <Separator />
-        <form className="flex flex-col w-full">
-          <label className="text-md" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-2"
-            name="email"
-            placeholder="you@example.com"
-            // required
-          />
-
-          <SubmitButton
-            formAction={signInWithEmail}
-            className="flex justify-center items-center hover:bg-slate-50 border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2 text-center text-base font-semibold"
-            pendingText="Signing In..."
-          >
-            <Mail className="mr-2" size={20} />
-            Sign In with Email
-          </SubmitButton>
-        </form> */}
 
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
