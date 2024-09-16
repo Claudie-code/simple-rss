@@ -9,7 +9,7 @@ export const LogoutButton = () => {
 
   return (
     <form action={() => startTransition(() => signOut())}>
-      <Button disabled={isPending}>
+      <Button disabled={isPending} className="w-full">
         {isPending ? "Logging out..." : "LogOut"}
       </Button>
     </form>

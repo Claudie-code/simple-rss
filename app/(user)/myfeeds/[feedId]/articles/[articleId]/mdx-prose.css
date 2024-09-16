@@ -154,6 +154,11 @@
 .md-post pre {
   border-radius: 6px;
   overflow: auto;
+  margin: 10px auto;
+}
+
+.md-post code {
+  white-space: pre;
 }
 
 .md-post time {

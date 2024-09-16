@@ -7,6 +7,9 @@ export async function fetchFullContent(articleLink: string) {
   try {
     // Attempt to parse the article
     const result = await Parser.parse(articleLink);
+    if (!result) {
+      return { error: "No content returned" };
+    }
     return { result };
   } catch (error) {
     // Log the error for debugging purposes

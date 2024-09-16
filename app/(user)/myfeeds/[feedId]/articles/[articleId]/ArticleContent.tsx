@@ -1,18 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
 import parse from "html-react-parser";
-// import Prism from "prismjs";
-// import "prismjs/themes/prism-tomorrow.css";
 import "./mdx-prose.css";
-import hljs from "highlight.js";
-import "highlight.js/styles/default.css";
 
 const ArticleContent = ({ content }: { content: string }) => {
-  useEffect(() => {
-    hljs.highlightAll();
-  }, []);
-  return <div className="text-lg md-post">{parse(content)}</div>;
+  const text = parse(content);
+  return <div className="text-lg md-post break-words">{text}</div>;
 };
 
 export default ArticleContent;

@@ -37,6 +37,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.52.1",
     "react-hot-toast": "^2.4.1",
+    "react-syntax-highlighter": "^15.5.0",
     "rehype-prism-plus": "^2.0.0",
     "rss-finder": "^2.1.5",
     "rss-parser": "^3.13.0",
@@ -54,6 +55,7 @@
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@types/xml2js": "^0.4.14",
     "encoding": "^0.1.13",
     "supabase": "^1.183.5"

@@ -12,23 +12,34 @@ const FullArticleContent = async ({ article }: articleDisplayProps) => {
   const { result, error } = await fetchFullContent(article.link!);
 
   return (
-    result && (
-      <div>
-        <Separator />
-        <p className="w-full text-center  text-slate-500 font-semibold text-sm">
-          FULL ARTICLE
-        </p>
-        <ChevronDown className="m-auto mb-6 text-slate-500" />
-        {result.lead_image_url && (
-          <img
-            src={result.lead_image_url}
-            alt={result.title}
-            className="mb-5"
-          />
-        )}
-        <ArticleContent content={result.content} />
-      </div>
-    )
+    <>
+      {result && (
+        <div>
+          <Separator />
+          <p className="w-full text-center  text-slate-500 font-semibold text-sm">
+            FULL ARTICLE
+          </p>
+          <ChevronDown className="m-auto mb-6 text-slate-500" />
+          {result.lead_image_url && (
+            <img
+              src={result.lead_image_url}
+              alt={result.title}
+              className="mb-5"
+            />
+          )}
+          <ArticleContent content={result.content} />
+        </div>
+      )}
+      {error && (
+        <div>
+          <Separator />
+          <p className="w-full text-center text-red-500 font-semibold text-sm py-6">
+            Oops! We couldn't load the full article. Please try again or use the
+            external link below.
+          </p>
+        </div>
+      )}
+    </>
   );
 };
 
