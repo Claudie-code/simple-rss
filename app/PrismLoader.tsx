@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-// import Prism from "prismjs";
-// import "prismjs/themes/prism-tomorrow.css";
-import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-dark.css";
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
 
 export default function PrismLoader() {
   useEffect(() => {
-    hljs.highlightAll();
+    Prism.highlightAll();
   }, []);
   return <div className="hidden"></div>;
 }

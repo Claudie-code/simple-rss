@@ -7,7 +7,6 @@ import TitleFeed from "./_components/TitleFeed";
 import { MobileSidebar } from "./_components/FeedsMobileSidebar";
 import { calculateDaysRemaining } from "@/utils/date";
 import { MyfeedsSidebar } from "./_components/MyfeedsSidebar";
-import PrismLoader from "@/app/PrismLoader";
 
 export default async function MyFeedsLayout({
   children,
@@ -57,7 +56,6 @@ export default async function MyFeedsLayout({
       </nav>
       <MyfeedsSidebar feeds={feeds} />
       <main className="lg:pl-80 h-full flex flex-col">{children}</main>
-      <PrismLoader />
     </>
   );
 }
