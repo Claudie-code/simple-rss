@@ -34,7 +34,7 @@ export default function RootLayout({
           <main className="">{children}</main>
         </Providers>
         <Analytics />
-        <PrismLoader />
+        {/* <PrismLoader /> */}
       </body>
     </html>
   );
