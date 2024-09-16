@@ -7,7 +7,7 @@ export default function Features() {
       description:
         "Quickly add feeds and access articles with minimal distractions. Focus on what really matters: the content.",
       reverse: true,
-      image: "/fullarticle1.png",
+      image: "/sidebar.png",
       altImage: "",
     },
     {
@@ -15,7 +15,7 @@ export default function Features() {
       description:
         "Enjoy a distraction-free experience without tracking or ads. Your feeds are private and under your control.",
       reverse: false,
-      image: "/fullarticle1.png",
+      image: "/articles.png",
       altImage: "",
     },
     {
