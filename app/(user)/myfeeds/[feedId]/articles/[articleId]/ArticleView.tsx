@@ -112,7 +112,7 @@ export const ArticleView = async ({
         <ArticleContent content={selectedArticle.content} />
       )}
 
-      {/* {selectedArticle?.link &&
+      {selectedArticle?.link &&
         (selectedArticle.link.includes("reddit.com") ? (
           <Link href={selectedArticle.link} target="_blank">
             <Button>
@@ -123,7 +123,7 @@ export const ArticleView = async ({
           <Suspense fallback={<div>Loading full article...</div>}>
             <FullArticleContent article={selectedArticle} />
           </Suspense>
-        ))} */}
+        ))}
     </div>
   );
 };
