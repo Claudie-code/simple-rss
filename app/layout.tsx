@@ -1,13 +1,8 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
-import Header from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Providers } from "./Providers";
 import { AOSInit } from "./AOSinit";
 import Analytics from "./Analytics";
-import PrismLoader from "./PrismLoader";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -34,7 +29,6 @@ export default function RootLayout({
           <main className="">{children}</main>
         </Providers>
         <Analytics />
-        {/* <PrismLoader /> */}
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Prism from "prismjs";
-import "prismjs/themes/prism-tomorrow.css";
+import "prismjs/themes/prism-okaidia.min.css";
 
 export default function PrismLoader() {
   useEffect(() => {
