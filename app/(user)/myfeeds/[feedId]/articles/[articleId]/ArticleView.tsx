@@ -76,6 +76,7 @@ export const ArticleView = async ({
           </div>
           <SubmitButton
             formAction={addStarred}
+            title="starred"
             className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
           >
             {selectedArticle.is_starred ? (
@@ -85,6 +86,7 @@ export const ArticleView = async ({
             )}
           </SubmitButton>
           <SubmitButton
+            title="unread"
             formAction={handleRemoveFromHistory}
             className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
           >
@@ -95,6 +97,7 @@ export const ArticleView = async ({
           <div className="flex">
             <Link
               href={selectedArticle.link!}
+              title="article link"
               target="_blank"
               className="flex justify-center items-center rounded-full h-10 w-10 text-foreground mr-2 text-center text-base font-semibold transition-colors duration-300 ease-in-out hover:bg-foreground/5"
             >

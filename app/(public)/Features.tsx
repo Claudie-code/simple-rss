@@ -1,72 +1,103 @@
 import Image from "next/image";
 
 export default function Features() {
-  const featureData = [
-    {
-      title: "The Essentials, Nothing More.",
-      description:
-        "Quickly add feeds and access articles with minimal distractions. Focus on what really matters: the content.",
-      reverse: true,
-      image: "/sidebar.png",
-      altImage: "sidebar simpleRSS app",
-    },
-    {
-      title: "Your Space, Your Privacy",
-      description:
-        "Enjoy a distraction-free experience without tracking or ads. Your feeds are private and under your control.",
-      reverse: false,
-      image: "/articles.png",
-      altImage: "list of articles simpleRSS app",
-    },
-    {
-      title: "Full Article View.",
-      description:
-        "Read complete articles within the app, no need to open a browser. Enjoy a clean and focused reading experience.",
-      reverse: true,
-      image: "/fullarticle1.png",
-      altImage: "image of a full article",
-    },
-  ];
-
   return (
-    <div className="space-y-5 pb-10 p-4 bg-white">
-      <div className="top-[-210px] relative max-w-5xl m-auto">
+    <div className="pb-10  bg-white">
+      <div className="top-[-230px] relative max-w-5xl m-auto overflow-hidden">
         <Image
           src="/myfeeds.png"
           alt="myfeeds page"
           width={1920}
           height={1080}
+          priority
+          className="hidden sm:flex px-4"
+        />
+        <Image
+          src="/desktop.png"
+          alt="myfeeds page"
+          width={1920}
+          height={1080}
+          priority
+          className="sm:hidden w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0 pl-4"
         />
       </div>
 
-      {featureData.map((feature, index) => (
+      {/* Premier feature */}
+      <div className="flex flex-col xl:flex-row-reverse items-center xl:justify-center md:gap-16 m-auto md:h-screen px-4">
         <div
-          key={index}
-          className={`flex flex-col ${
-            feature.reverse ? "xl:flex-row-reverse" : "xl:flex-row"
-          } items-center xl:justify-center md:gap-16 pt-6 m-auto md:h-screen`}
+          className="px-6 pb-6 w-full flex flex-col justify-center h-auto mt-0 md:w-[392px] lg:w-[360px]"
+          data-aos="fade-down"
         >
-          <div
-            className="p-6 w-full flex flex-col justify-center h-auto mt-0 md:w-[392px] lg:w-[360px]"
-            data-aos="fade-down"
-          >
-            <h3 className="text-3xl font-semibold mb-4 text-slate-900">
-              {feature.title}
-            </h3>
-            <p className="text-xl font-medium text-slate-400">
-              {feature.description}
-            </p>
-          </div>
-          <div className="max-w-xs" data-aos="fade-up">
-            <Image
-              src={feature.image}
-              alt={feature.altImage}
-              width={1920}
-              height={1080}
-            />
-          </div>
+          <h3 className="text-3xl font-semibold mb-4 text-slate-900">
+            The Essentials, <br />
+            Nothing More.
+          </h3>
+          <p className="text-xl font-medium text-slate-400">
+            Quickly add feeds and access articles with minimal distractions.
+            Focus on what really matters: the content.
+          </p>
         </div>
-      ))}
+        <div className="max-w-xs" data-aos="fade-up">
+          <Image
+            src="/sidebar.png"
+            alt="sidebar simpleRSS app"
+            width={1920}
+            height={1080}
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      {/* Deuxième feature */}
+      <div className="flex flex-col xl:flex-row items-center xl:justify-center md:gap-16 pt-10 m-auto md:h-screen px-4">
+        <div
+          className="p-6 w-full flex flex-col justify-center h-auto mt-0 md:w-[392px] lg:w-[360px]"
+          data-aos="fade-down"
+        >
+          <h3 className="text-3xl font-semibold mb-4 text-slate-900">
+            Your Space, <br />
+            Your Privacy
+          </h3>
+          <p className="text-xl font-medium text-slate-400">
+            Enjoy a distraction-free experience without tracking or ads. Your
+            feeds are private and under your control.
+          </p>
+        </div>
+        <div className="max-w-xs" data-aos="fade-up">
+          <Image
+            src="/articles.png"
+            alt="list of articles simpleRSS app"
+            width={1920}
+            height={1080}
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      {/* Troisième feature */}
+      <div className="flex flex-col xl:flex-row-reverse items-center xl:justify-center md:gap-16 pt-10 m-auto md:h-screen px-4">
+        <div
+          className="p-6 w-full flex flex-col justify-center h-auto mt-0 md:w-[392px] lg:w-[360px]"
+          data-aos="fade-down"
+        >
+          <h3 className="text-3xl font-semibold mb-4 text-slate-900">
+            Full Article View.
+          </h3>
+          <p className="text-xl font-medium text-slate-400">
+            Read complete articles within the app, no need to open a browser.
+            Enjoy a clean and focused reading experience.
+          </p>
+        </div>
+        <div className="max-w-xs" data-aos="fade-up">
+          <Image
+            src="/fullarticle1.png"
+            alt="image of a full article"
+            width={1920}
+            height={1080}
+            loading="lazy"
+          />
+        </div>
+      </div>
     </div>
   );
 }
