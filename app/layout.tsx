@@ -10,7 +10,7 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "SimpleRSS - Your Minimalist RSS Reader",
+  title: "SimpleRSS - Minimalist RSS Reader",
   description:
     "Stay updated with your favorite RSS feeds effortlessly using SimpleRSS.",
 };

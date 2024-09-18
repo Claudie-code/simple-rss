@@ -8,7 +8,7 @@ export default function Features() {
         "Quickly add feeds and access articles with minimal distractions. Focus on what really matters: the content.",
       reverse: true,
       image: "/sidebar.png",
-      altImage: "",
+      altImage: "sidebar simpleRSS app",
     },
     {
       title: "Your Space, Your Privacy",
@@ -16,7 +16,7 @@ export default function Features() {
         "Enjoy a distraction-free experience without tracking or ads. Your feeds are private and under your control.",
       reverse: false,
       image: "/articles.png",
-      altImage: "",
+      altImage: "list of articles simpleRSS app",
     },
     {
       title: "Full Article View.",

@@ -68,7 +68,7 @@ export const ArticleView = async ({
   };
 
   return (
-    <div className="max-w-4xl w-full m-auto lg:p-4 px-4">
+    <div className="max-w-4xl w-full m-auto lg:p-4 px-4 pb-4">
       <form className="flex justify-between mt-3">
         <div className="flex">
           <div className="2xl:hidden">

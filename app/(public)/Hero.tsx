@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <section className="text-slate-900 py-28 pb-60 flex items-center justify-center">
       <div className="text-center max-w-3xl mx-auto px-4">
-        <h1 className="text-5xl font-bold mb-4">Your Minimalist RSS Reader</h1>
+        <h1 className="text-5xl font-bold mb-4">Minimalist RSS Reader</h1>
         <p className="text-xl mb-4">
           Focus on what matters. A clean, distraction-free experience to keep
           you updated with your favorite content.
