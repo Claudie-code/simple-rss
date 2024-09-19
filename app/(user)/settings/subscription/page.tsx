@@ -22,7 +22,7 @@ export default async function Billing() {
     .single();
 
   const hasAccess = customer?.has_access ?? false;
-  const daysRemaining = calculateDaysRemaining(new Date(user.created_at), 5);
+  const daysRemaining = calculateDaysRemaining(new Date(user.created_at), 8);
 
   return (
     <div className="p-4 py-6">
