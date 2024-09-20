@@ -33,7 +33,7 @@ export default async function MyFeedsLayout({
   const hasAccess = customer?.has_access;
 
   // Calculate remaining trial days
-  const daysRemaining = calculateDaysRemaining(new Date(user.created_at), 8);
+  const daysRemaining = calculateDaysRemaining(new Date(user.created_at), 30);
 
   // Redirect if trial has ended and user doesn't have access
   if (daysRemaining <= 0 && !hasAccess) {
