@@ -99,7 +99,7 @@ export default async function Login({
 
       <div className="flex-1 flex flex-col justify-center gap-2 text-foreground">
         <h1 className="text-2xl font-semibold tracking-tight text-center">
-          Create an account
+          Sign in or Sign up
         </h1>
         {/* <p className="text-sm text-muted-foreground text-center">
           Enter your email below to create your account
