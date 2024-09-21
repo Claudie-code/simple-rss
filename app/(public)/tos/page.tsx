@@ -166,8 +166,8 @@ const TermsAndConditions = () => {
           <ul className="list-disc list-inside text-gray-700">
             <li>
               Email:{" "}
-              <a href="mailto:support@simple-rss.com" className="text-blue-500">
-                support@simple-rss.com
+              <a href="mailto:simple-rss@outlook.com" className="text-blue-500">
+                simple-rss@outlook.com
               </a>
             </li>
           </ul>

@@ -29,7 +29,7 @@ export const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:support@simple-rss.com"
+                  href="mailto:simple-rss@outlook.com"
                   className="hover:text-blue-600"
                 >
                   Contact

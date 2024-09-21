@@ -71,8 +71,8 @@ export default function PrivacyPolicy() {
       <p className="mb-4">
         You have the right to access, correct, or delete your personal
         information. If you wish to exercise these rights, please contact us at{" "}
-        <Link href="mailto:support@simple-rss.com" className="text-blue-500">
-          support@simple-rss.com
+        <Link href="mailto:simple-rss@outlook.com" className="text-blue-500">
+          simple-rss@outlook.com
         </Link>
         .
       </p>
@@ -88,8 +88,8 @@ export default function PrivacyPolicy() {
       <p className="mb-4">
         If you have any questions or concerns about this Privacy Policy or your
         data, please contact us at{" "}
-        <Link href="mailto:support@simple-rss.com" className="text-blue-500">
-          support@simple-rss.com
+        <Link href="mailto:simple-rss@outlook.com" className="text-blue-500">
+          simple-rss@outlook.com
         </Link>
         .
       </p>
