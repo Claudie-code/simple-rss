@@ -38,7 +38,7 @@ export default async function Login({
     });
 
     if (error) {
-      return toast.error("Could not authenticate user");
+      return redirect("/login?message=Could not authenticate user");
     }
 
     return redirect(data.url);
@@ -57,7 +57,7 @@ export default async function Login({
     });
 
     if (error) {
-      return toast.error("Could not authenticate user");
+      return redirect("/login?message=Could not authenticate user");
     }
 
     return redirect(data.url);
@@ -78,17 +78,18 @@ export default async function Login({
     });
 
     if (error) {
-      return toast.error("Could not authenticate user");
+      console.log("error", error);
+      return redirect("/login?message=Could not authenticate user");
     }
 
     return redirect("/login?message=Check email to continue sign in process");
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full p-4 sm:max-w-md justify-center gap-2 m-auto py-20">
+    <div className="flex-1 flex flex-col w-full p-4 sm:max-w-md justify-center gap-2 m-auto py-12 pb-44">
       <Link
         href="/"
-        className="py-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+        className="py-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm pb-8"
       >
         <Button>
           <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />

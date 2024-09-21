@@ -10,8 +10,8 @@ const TermsAndConditions = () => {
             1. Acceptance of Terms
           </h2>
           <p className="text-gray-700">
-            By accessing or using the SimpleRSS website (the “Website”), you
-            agree to comply with and be bound by these Terms of service.
+            By accessing or using the SimpleRSS website, you agree to comply
+            with and be bound by these Terms of service.
           </p>
         </section>
 
@@ -19,9 +19,9 @@ const TermsAndConditions = () => {
         <section>
           <h2 className="text-2xl font-semibold mb-2">2. Use of the Website</h2>
           <p className="text-gray-700">
-            You are allowed to use the Website for personal, non-commercial
-            purposes only. Any unauthorized use of the Website, such as for
-            illegal activities or harmful interference, is strictly prohibited.
+            You are allowed to use the site for personal, non-commercial
+            purposes only. Any unauthorized use of the site, such as for illegal
+            activities or harmful interference, is strictly prohibited.
           </p>
         </section>
 
@@ -43,7 +43,7 @@ const TermsAndConditions = () => {
             4. Content and Intellectual Property
           </h2>
           <p className="text-gray-700">
-            All content on this Website, including text, graphics, logos, and
+            All content on this site, including text, graphics, logos, and
             software, is the property of SimpleRSS or its licensors. You are
             granted a limited, non-exclusive license to view and use the content
             for personal purposes. Reproduction or redistribution without
@@ -79,7 +79,7 @@ const TermsAndConditions = () => {
         <section>
           <h2 className="text-2xl font-semibold mb-2">7. Privacy Policy</h2>
           <p className="text-gray-700">
-            Your use of the Website is also governed by our{" "}
+            Your use of the site is also governed by our{" "}
             <a href="/privacy-policy" className="text-blue-500">
               Privacy Policy
             </a>
@@ -94,10 +94,10 @@ const TermsAndConditions = () => {
             8. Disclaimer of Warranties
           </h2>
           <p className="text-gray-700">
-            The Website and all content provided through it are offered on an
-            "as is" and "as available" basis. SimpleRSS makes no warranties,
-            whether express or implied, regarding the Website's performance,
-            accuracy, or availability.
+            The site and all content provided through it are offered on an "as
+            is" and "as available" basis. SimpleRSS makes no warranties, whether
+            express or implied, regarding the site's performance, accuracy, or
+            availability.
           </p>
         </section>
 
@@ -109,7 +109,7 @@ const TermsAndConditions = () => {
           <p className="text-gray-700">
             To the maximum extent permitted by law, SimpleRSS will not be liable
             for any direct, indirect, incidental, or consequential damages
-            resulting from your use of the Website.
+            resulting from your use of the site.
           </p>
         </section>
 
@@ -119,7 +119,7 @@ const TermsAndConditions = () => {
           <p className="text-gray-700">
             You agree to indemnify and hold SimpleRSS and its affiliates,
             officers, and employees harmless from any claims or damages arising
-            from your use of the Website or violation of these Terms.
+            from your use of the site or violation of these Terms.
           </p>
         </section>
 
@@ -128,7 +128,7 @@ const TermsAndConditions = () => {
           <h2 className="text-2xl font-semibold mb-2">11. Termination</h2>
           <p className="text-gray-700">
             SimpleRSS reserves the right to suspend or terminate your access to
-            the Website for violating these Terms or engaging in harmful
+            the site for violating these Terms or engaging in harmful
             activities.
           </p>
         </section>
@@ -138,8 +138,8 @@ const TermsAndConditions = () => {
           <h2 className="text-2xl font-semibold mb-2">12. Governing Law</h2>
           <p className="text-gray-700">
             These Terms are governed by and construed in accordance with the
-            laws of [Insert Jurisdiction]. Any legal disputes will be resolved
-            in the courts of [Insert Jurisdiction].
+            laws of France. Any legal disputes will be resolved in the courts of
+            France.
           </p>
         </section>
 
@@ -149,7 +149,7 @@ const TermsAndConditions = () => {
           <p className="text-gray-700">
             We may update these Terms of service from time to time. It is your
             responsibility to review these Terms regularly. Continued use of the
-            Website after changes are made constitutes your acceptance of the
+            site after changes are made constitutes your acceptance of the
             updated Terms.
           </p>
         </section>
@@ -170,12 +170,11 @@ const TermsAndConditions = () => {
                 support@simple-rss.com
               </a>
             </li>
-            <li>Address: [Insert Address]</li>
           </ul>
         </section>
 
         <p className="text-sm text-gray-500">
-          Last updated on 6 September 2024.
+          Last updated on 20 September 2024.
         </p>
       </div>
     </div>
