@@ -5,7 +5,7 @@ export default function Features() {
     <div className="pb-10  bg-white">
       <div className="top-[-230px] relative max-w-5xl m-auto overflow-hidden">
         <Image
-          src="/myfeeds.png"
+          src="/macbookarticle.png"
           alt="myfeeds page"
           width={1920}
           height={1080}

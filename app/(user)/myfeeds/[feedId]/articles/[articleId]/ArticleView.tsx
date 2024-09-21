@@ -106,7 +106,7 @@ export const ArticleView = async ({
           </div>
         )}
       </form>
-      <h3 className="text-xl font-semibold">{selectedArticle?.title}</h3>
+      <h3 className="text-2xl font-semibold">{selectedArticle?.title}</h3>
       <p className="mb-5 text-foreground/70">
         {formatDate(selectedArticle.pub_date!)}{" "}
         {selectedArticle.author ? "by " + selectedArticle.author : ""}
