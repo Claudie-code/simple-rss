@@ -5,13 +5,18 @@ const HeroSection = () => {
   return (
     <section className="text-slate-900 py-28 pb-60 flex items-center justify-center">
       <div className="text-center max-w-3xl mx-auto px-4">
-        <h1 className="text-5xl font-bold mb-4">Minimalist RSS Reader</h1>
+        <h1 className="text-5xl font-bold mb-4">
+          Simple Minimalist RSS Feed Reader
+        </h1>
         <p className="text-xl mb-4">
-          Focus on what matters. A clean, distraction-free experience to keep
-          you updated with your favorite content.
+          Keep your feeds organized and distraction-free. A minimalist RSS
+          reader focused on simplicity and clarity.
         </p>
         <Link href="/login">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg mt-9">
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg mt-9"
+            aria-label="Get Started with Simple RSS"
+          >
             Get Started
           </button>
         </Link>

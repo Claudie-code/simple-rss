@@ -6,7 +6,7 @@ export default function Features() {
       <div className="top-[-230px] relative max-w-5xl m-auto overflow-hidden">
         <Image
           src="/macbookarticle.png"
-          alt="myfeeds page"
+          alt="Simple RSS Reader interface showing feeds"
           width={1920}
           height={1080}
           priority
@@ -14,7 +14,7 @@ export default function Features() {
         />
         <Image
           src="/desktop.png"
-          alt="myfeeds page"
+          alt="Simple RSS Reader interface showing feeds"
           width={1920}
           height={1080}
           priority
@@ -29,8 +29,8 @@ export default function Features() {
           data-aos="fade-down"
         >
           <h3 className="text-3xl font-semibold mb-4 text-slate-900">
-            The Essentials, <br />
-            Nothing More.
+            Simple Design, <br />
+            Powerful Feeds.
           </h3>
           <p className="text-xl font-medium text-slate-400">
             Quickly add feeds and access articles with minimal distractions.
@@ -40,7 +40,7 @@ export default function Features() {
         <div className="max-w-xs" data-aos="fade-up">
           <Image
             src="/sidebar.png"
-            alt="sidebar simpleRSS app"
+            alt="sidebar of simpleRSS app"
             width={1920}
             height={1080}
             loading="lazy"

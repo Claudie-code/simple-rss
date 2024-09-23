@@ -34,8 +34,11 @@ const Pricing = () => {
                   id="monthly"
                   name="monthly"
                   checked={plan.price === 3}
+                  aria-labelledby="monthly-label"
                 />
-                <Label htmlFor="monthly">Pay monthly</Label>
+                <Label id="monthly-label" htmlFor="monthly">
+                  Pay monthly
+                </Label>
               </div>
               <div className="flex items-center gap-2">
                 <Input
@@ -45,8 +48,11 @@ const Pricing = () => {
                   id="yearly"
                   name="yearly"
                   checked={plan.price === 30}
+                  aria-labelledby="yearly-label"
                 />
-                <Label htmlFor="yearly">Pay yearly (17% OFF 💰)</Label>
+                <Label id="yearly-label" htmlFor="yearly">
+                  Pay yearly (17% OFF 💰)
+                </Label>
               </div>
             </div>
 
