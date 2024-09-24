@@ -7,8 +7,8 @@ const HeroSection = () => {
       <div className="text-center max-w-3xl mx-auto px-4">
         <h1 className="text-5xl font-bold mb-4">Minimalist RSS Reader</h1>
         <p className="text-xl mb-4">
-          Keep your feeds organized and distraction-free. A minimalist RSS
-          reader focused on simplicity and clarity.
+          A simple RSS feed reader designed for clean, distraction-free
+          browsing.
         </p>
         <Link href="/login">
           <button
