@@ -27,14 +27,16 @@ export default function Sidebar({
       <div className="p-6 pt-0 lg:mt-0">
         <AddFeedForm />
       </div>
-      <div className="flex flex-col w-full" onClick={() => setOpen(false)}>
-        <SidebarItem
-          icon={Newspaper}
-          label="Unread"
-          unreadCount={totalUnread}
-          href="/myfeeds/unread"
-        />
-        <SidebarItem icon={Star} label="Starred" href="/myfeeds/starred" />
+      <div className="flex flex-col w-full">
+        <div onClick={() => setOpen(false)}>
+          <SidebarItem
+            icon={Newspaper}
+            label="Unread"
+            unreadCount={totalUnread}
+            href="/myfeeds/unread"
+          />
+          <SidebarItem icon={Star} label="Starred" href="/myfeeds/starred" />
+        </div>
         <FeedsAccordion feeds={feeds} setOpen={setOpen} />
       </div>
     </div>
