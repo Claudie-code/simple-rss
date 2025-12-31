@@ -59,7 +59,9 @@ export async function GET(req: Request) {
         }
       }
 
-      const upsertResult = await upsertArticles(oldFeed.id, feed);
+      const upsertResult = await upsertArticles(oldFeed.id, {
+        items: feed.items,
+      });
       if ("error" in upsertResult) {
         console.error(
           `[FEEDS_REFRESH] Error upserting articles for feed ${id}: ${upsertResult.error}`
