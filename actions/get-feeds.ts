@@ -30,7 +30,7 @@ export const getFeeds = async ({
 
     // Extraire les objets feeds des résultats
 
-    return data || [];
+    return (data as FeedsCount[]) || [];
   } catch (error) {
     console.log("[GET_FEEDS]", error);
     return [];

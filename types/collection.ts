@@ -25,3 +25,16 @@ export type EnrichedArticle = Articles & {
 export type FeedsWithArticlesFavoritesHistory = Feeds & {
   articles: EnrichedArticle[];
 };
+
+export type ParsedFeed = {
+  title?: string;
+  description?: string;
+  link?: string;
+  language?: string;
+  items?: Array<{
+    title?: string;
+    link?: string;
+    pubDate?: string;
+    content?: string;
+  }>;
+};

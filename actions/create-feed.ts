@@ -2,21 +2,15 @@ import { createClient } from "@/utils/supabase/server";
 import { getFeed } from "@/utils/feed";
 import { upsertArticles } from "./upsert-articles";
 import { fetchFavicon } from "@/utils/favicon";
-
-interface Feed {
-  link: string;
-  title: string;
-  id: number;
-  url: string;
-  correct_url: string | null;
-}
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Feeds, ParsedFeed } from "@/types/collection";
 
 async function upsertFeed(
-  supabase: any,
-  feed: any,
+  supabase: SupabaseClient,
+  feed: ParsedFeed,
   url: string,
   correctUrl: string | null
-): Promise<Feed> {
+): Promise<Feeds> {
   const { data: existingFeed, error: feedSelectError } = await supabase
     .from("feeds")
     .select("*")
@@ -27,9 +21,9 @@ async function upsertFeed(
     console.log("No existing feed", feedSelectError);
   }
 
-  let feedData: Feed;
+  let feedData: Feeds;
   if (!existingFeed) {
-    const faviconURL = await fetchFavicon(feed.link);
+    const faviconURL = feed.link ? await fetchFavicon(feed.link) : null;
 
     const { data: newFeedData, error: feedInsertError } = await supabase
       .from("feeds")
@@ -76,7 +70,7 @@ async function upsertFeed(
 }
 
 async function upsertSubscription(
-  supabase: any,
+  supabase: SupabaseClient,
   feedId: number,
   userId: string
 ) {
@@ -107,15 +101,22 @@ export async function createFeed({ url, userId, link }: CreateFeedParams) {
   try {
     const supabase = createClient();
 
-    const { feed, error, correctUrl } = await getFeed(url, link);
-    if (error || !feed) {
-      return { error: error };
+    const result = await getFeed(url, link);
+
+    if ("error" in result) {
+      return { error: result.error };
     }
 
-    const feedData = await upsertFeed(supabase, feed, url, correctUrl!);
+    const feedData = await upsertFeed(
+      supabase,
+      result.feed,
+      url,
+      result.correctUrl
+    );
+
     await upsertSubscription(supabase, feedData.id, userId);
 
-    const articles = await upsertArticles(feedData.id, feed);
+    const articles = await upsertArticles(feedData.id, result.feed);
 
     return {
       feed: feedData,

@@ -42,11 +42,14 @@ export async function findRssFeed(
   }
 }
 
-interface GetFeedResult {
-  feed?: Parser.Output<any>;
-  error?: string;
-  correctUrl?: string | null;
-}
+type GetFeedResult =
+  | {
+      feed: Parser.Output<any>;
+      correctUrl: string | null;
+    }
+  | {
+      error: string;
+    };
 
 export async function getFeed(
   url: string,
