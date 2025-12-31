@@ -38,3 +38,21 @@ export type ParsedFeed = {
     content?: string;
   }>;
 };
+
+export interface ParsedFeedItem {
+  title?: string;
+  link?: string;
+  pubDate?: string;
+  creator?: string;
+  author?: string;
+  content?: string;
+  contentSnippet?: string;
+  id?: string;
+  guid?: string;
+  isoDate?: string;
+  categories?: string[] | string;
+}
+
+export type FeedItems = {
+  items?: ParsedFeedItem[];
+};
